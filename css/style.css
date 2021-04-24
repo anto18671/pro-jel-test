@@ -1,0 +1,203 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, sans-serif, Arial;
+}
+html, body {
+	height:100%;
+}
+h1, p {
+	text-decoration: none;
+	color: #000000;
+}
+ul {
+	list-style: none;
+}
+.bold {
+	font-weight: bold;
+}
+.center {
+	text-align: center;
+}
+
+.front {
+	text-align: left;
+}
+
+.end{
+    text-align: right;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.pale {
+	color:#D0D0D0;
+}
+
+.font20{
+    font-size: 20px;
+}
+
+.padding{
+    height: 18px;
+}
+
+.align_top {
+	vertical-align: top;
+}
+
+.margin_auto {
+	margin: auto;
+}
+
+.boder_red {
+	border-color: red !important;
+}
+
+.body_wrap {
+	height: 100%;
+    font-size: 12px;
+    font-family: Helvetica;
+    background-color: #f0f0f0;
+}
+
+.box_wrap {
+	margin: 20px 50px;
+    background-color: #ffffff;
+    border: 1px #ffffff;
+    border-radius: 5px;
+    padding: 10px 35px 20px 35px;
+    overflow: auto;
+}
+
+.input_label_wrap {
+    padding-bottom: 15px;
+	width: 100%;
+}
+
+.login_form {
+    width: 55%;
+    margin: 0 auto;
+}
+
+.submit_button {
+	display: block;
+    width: 100px;
+	background-color: #dedede;
+	border: 1px solid #d9d9d9;
+	cursor: pointer;
+	text-align: center;
+	color: #000000;
+	font-size: 12px;
+	padding: 6px 0;
+	border-radius: 5px;
+	text-decoration: none;
+}
+
+.submit_button:hover {
+	background-color: #d1d1d1;
+	border-color:#d9d9d9;
+	transition: 0.3s;
+	color: #000000;
+}
+
+.table_button {
+	display: block;
+    width: 80px;
+	background-color: #dedede;
+	border: 1px solid #d9d9d9;
+	cursor: pointer;
+	text-align: center;
+	color: #000000;
+	font-size: 11px;
+	padding: 3px 0;
+	border-radius: 2px;
+	text-decoration: none;
+}
+
+.table_button:hover {
+	background-color: #d1d1d1;
+	border-color:#d9d9d9;
+	transition: 0.3s;
+	color: #000000;
+}
+
+.flex_split{
+    display: flex;
+    justify-content: space-between;
+}
+
+.button_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-bottom: 18px;
+}
+
+/*--------------- Utility End --------------*/
+/*--------------- Header Start --------------*/
+
+.admin_nav_wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 40px 160px;
+    background-color: #ffffff;
+    border: 1px #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.nav_button {
+	display: block;
+    width: 200px;
+	font-size: 12px;
+	padding: 10px 50px;
+}
+
+/*--------------- Header End --------------*/
+/*------------- Materiel Start  -----------*/
+
+#material_datatable{
+    font-size: 12px;
+}
+
+.dollar_sign{
+	font-size: 12px;
+	display: inline;
+	padding-left: 4px;
+}
+
+.close_popup{
+    position : absolute;
+	display : block;
+	top: 10px;
+	right : 10px;
+	font-size : 22px;
+	color : #000000;
+	cursor : pointer;
+}
+
+.popup_wrap{
+    display: none;
+}
+
+.materiel_popup{
+    position: relative;
+    right: 30px;
+	background: white;
+	border-radius : 3px;
+    display: block;
+	width : 400px;
+    padding: 30px 30px 5px 30px;
+}
+
+.label_top{
+    display: block;
+    font-size: 14px;
+}
+
+/*------------- Materiel End  -----------*/
