@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/pro-jel-test/js/datatable.js</file>
+            <file>file:/C:/wamp64/www/pro-jel-test/js/distibuteur.js</file>
+            <file>file:/C:/wamp64/www/pro-jel-test/view/distibuteur.php</file>
             <file>file:/C:/wamp64/www/pro-jel-test/view/materiel.php</file>
             <file>file:/C:/wamp64/www/pro-jel-test/js/materiel.js</file>
-            <file>file:/C:/wamp64/www/pro-jel-test/js/jquery.js</file>
             <file>file:/C:/wamp64/www/pro-jel-test/manager/HomeManager.php</file>
+            <file>file:/C:/wamp64/www/pro-jel-test/view/header.php</file>
+            <file>file:/C:/wamp64/www/pro-jel-test/css/style.css</file>
             <file>file:/C:/wamp64/www/pro-jel-test/action/HomeController.php</file>
         </group>
     </open-files>
