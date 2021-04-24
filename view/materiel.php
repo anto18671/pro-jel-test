@@ -30,7 +30,7 @@ $materiels = $manager->getMateriel();
         </div>
         <div class="padding"></div>
         
-        <table id="material_datatable" class="display cell-border" style="width:100%">
+        <table id="materiel_datatable" class="display cell-border" style="width:100%">
             <thead>
                 <tr class="front">
                     <th>No. Pièce</th>
@@ -86,13 +86,13 @@ $materiels = $manager->getMateriel();
                     <p class="dollar_sign">$</p>
                 </div>
                 
-                <div class="button_box">
-                    <label id="add_materiel_submit" class="submit_button">Ajouter</label>
-                    <label id="add_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
-                </div>
-                
                 <input type="hidden" name="task" value="add_materiel"/>
             </form>
+            
+            <div class="button_box">
+                <label id="add_materiel_submit" class="submit_button">Ajouter</label>
+                <label id="add_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
+            </div>
 
             <span class="close_popup" id="add_close_popup">X</span>
         </div>
@@ -126,15 +126,15 @@ $materiels = $manager->getMateriel();
                     <p class="dollar_sign">$</p>
                 </div>
                 
-                <div class="button_box">
-                    <label id="edit_materiel_submit" class="submit_button">Éditer</label>
-                    <label id="edit_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
-                </div>
-                
-                <input type="hidden" name="id" id="edit_material_id"/>
+                <input type="hidden" name="id" id="edit_materiel_id"/>
                 <input type="hidden" name="task" value="edit_materiel"/>
             </form>
 
+            <div class="button_box">
+                <label id="edit_materiel_submit" class="submit_button">Éditer</label>
+                <label id="edit_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
+            </div>
+            
             <span class="close_popup" id="edit_close_popup">X</span>
         </div>
     </div>
@@ -146,14 +146,14 @@ $materiels = $manager->getMateriel();
             <div class="padding"></div>
             
             <form method="POST" action="../action/HomeController.php" id="delete_materiel_form">
-                <div class="button_box">
-                    <label id="delete_materiel_submit" class="submit_button">Effacer</label>
-                    <label id="delete_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
-                </div>
-                
-                <input type="hidden" name="id" id="delete_material_id"/>
+                <input type="hidden" name="id" id="delete_materiel_id"/>
                 <input type="hidden" name="task" value="delete_materiel"/>
             </form>
+            
+            <div class="button_box">
+                <label id="delete_materiel_submit" class="submit_button">Effacer</label>
+                <label id="delete_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
+            </div>
 
             <span class="close_popup" id="delete_close_popup">X</span>
         </div>

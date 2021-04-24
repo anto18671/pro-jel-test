@@ -1,6 +1,6 @@
 $(function() {
     
-    $('#material_datatable').DataTable({
+    $('#distributor_datatable').DataTable({
         "pagingType": "simple_numbers",
         "scrollX": true,
         "columnDefs": [
@@ -10,12 +10,12 @@ $(function() {
 		 ]
     });
     
-    $('#add_materiel_popup_wrap').popup();
-	$('#add_materiel_popup_open').click(function(){
-        $('#add_materiel_popup_wrap').popup('show');
+    $('#add_distributor_popup_wrap').popup();
+	$('#add_distributor_popup_open').click(function(){
+        $('#add_distributor_popup_wrap').popup('show');
 	});
     $('#add_close_popup').click(function(){
-        $('#add_materiel_popup_wrap').popup('hide');
+        $('#add_distributor_popup_wrap').popup('hide');
         
         $("#add_piece_number").val("");
         $("#add_description").val("");
@@ -23,7 +23,7 @@ $(function() {
         $("#add_cost").val("");
 	});
     $('#add_cancel_popup').click(function(){
-        $('#add_materiel_popup_wrap').popup('hide');
+        $('#add_distributor_popup_wrap').popup('hide');
         
         $("#add_piece_number").val("");
         $("#add_description").val("");
@@ -31,40 +31,40 @@ $(function() {
         $("#add_cost").val("");
 	});
     
-    $('#edit_materiel_popup_wrap').popup();
-	$('.edit_materiel_popup_open').click(function(){
+    $('#edit_distributor_popup_wrap').popup();
+	$('.edit_distributor_popup_open').click(function(){
         var id = $(this).data("id");
 
-        $("#edit_piece_number").val(materiels[id].PieceNumber);
-        $("#edit_description").val(materiels[id].Description);
-        $("#edit_distributor").val(materiels[id].Distributor);
-        $("#edit_cost").val(materiels[id].Cost);
-        $("#edit_material_id").val(id);
+        $("#edit_piece_number").val(distributors[id].PieceNumber);
+        $("#edit_description").val(distributors[id].Description);
+        $("#edit_distributor").val(distributors[id].Distributor);
+        $("#edit_cost").val(distributors[id].Cost);
+        $("#edit_distributor_id").val(id);
         
-        $('#edit_materiel_popup_wrap').popup('show');
+        $('#edit_distributor_popup_wrap').popup('show');
 	});
     $('#edit_close_popup').click(function(){
-        $('#edit_materiel_popup_wrap').popup('hide');
+        $('#edit_distributor_popup_wrap').popup('hide');
 	});
     $('#edit_cancel_popup').click(function(){
-        $('#edit_materiel_popup_wrap').popup('hide');
+        $('#edit_distributor_popup_wrap').popup('hide');
 	});
     
-    $('#delete_materiel_popup_wrap').popup();
-	$('.delete_materiel_popup_open').click(function(){
+    $('#delete_distributor_popup_wrap').popup();
+	$('.delete_distributor_popup_open').click(function(){
         var id = $(this).data("id");
         
-        $("#delete_material_id").val(id);
-        $('#delete_materiel_popup_wrap').popup('show');
+        $("#delete_distributor_id").val(id);
+        $('#delete_distributor_popup_wrap').popup('show');
 	});
     $('#delete_close_popup').click(function(){
-        $('#delete_materiel_popup_wrap').popup('hide');
+        $('#delete_distributor_popup_wrap').popup('hide');
 	});
     $('#delete_cancel_popup').click(function(){
-        $('#delete_materiel_popup_wrap').popup('hide');
+        $('#delete_distributor_popup_wrap').popup('hide');
 	});
 
-    $("#add_materiel_submit").click(function(){
+    $("#add_distributor_submit").click(function(){
         var canSubmit = true;
         var piece_number = $("#add_piece_number").val();
         var description = $("#add_description").val();
@@ -91,11 +91,11 @@ $(function() {
         }
 
         if(canSubmit){
-            $("#add_materiel_form").submit();
+            $("#add_distributor_form").submit();
         }
     });
     
-    $("#edit_materiel_submit").click(function(){
+    $("#edit_distributor_submit").click(function(){
         var canSubmit = true;
         var piece_number = $("#edit_piece_number").val();
         var description = $("#edit_description").val();
@@ -122,11 +122,11 @@ $(function() {
         }
 
         if(canSubmit){
-            $("#edit_materiel_form").submit();
+            $("#edit_distributor_form").submit();
         }
     });
     
-    $("#delete_materiel_submit").click(function(){
-        $("#delete_materiel_form").submit();
+    $("#delete_distributor_submit").click(function(){
+        $("#delete_distributor_form").submit();
     });
 });

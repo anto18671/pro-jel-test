@@ -185,7 +185,8 @@ ul {
     display: none;
 }
 
-.materiel_popup{
+.materiel_popup,
+.distributor_popup{
     position: relative;
     right: 30px;
 	background: white;

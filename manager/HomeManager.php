@@ -16,7 +16,7 @@ class HomeManager
 		$conn = $connManager->ConnectToDb ();
         $date = self::GetDate();
 
-        $sql = "INSERT INTO materiel VALUES (null,?,?,?,?,?)";
+        $sql = "INSERT INTO materiel VALUES (null,?,?,?,?,?,0)";
 		$result = $conn->prepare ($sql);
 		$result->execute (array($pieceNumber, $description, $distributor, $cost, $date));
     }
@@ -42,6 +42,38 @@ class HomeManager
 		$result->execute (array($id));
     }
     
+    function AddDistributor($name, $phone, $address)
+    {
+		$connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+        $date = self::GetDate();
+
+        $sql = "INSERT INTO distributor VALUES (null,?,?,?,?,0)";
+		$result = $conn->prepare ($sql);
+		$result->execute (array($name, $phone, $address, $date));
+    }
+    
+    function EditDistributor($id, $name, $phone, $address)
+    {
+		$connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+        $date = self::GetDate();
+        
+        $sql = "UPDATE distributor SET Name = ?, Phone = ?, Address = ?, UpdateDate = ? WHERE Id = ?";
+		$result = $conn->prepare ($sql);
+		$result->execute (array($name, $phone, $address, $date, $id));
+    }
+    
+    function DeleteDistributor($id)
+    {
+		$connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+        
+        $sql = "UPDATE distributor SET isArchived = 1 WHERE Id = ?";
+		$result = $conn->prepare ($sql);
+		$result->execute (array($id));
+    }
+    
     function getMateriel()
     {
 		$connManager = new ConnectionManager ();
@@ -62,7 +94,7 @@ class HomeManager
                 $materiel->Description = $row['Description'];
                 $materiel->Distributor = $row['Distributor'];
                 $materiel->Cost = $row['Cost'];
-                $materiel->UpdateDate = $row['UpdateDate'];;
+                $materiel->UpdateDate = $row['UpdateDate'];
                 
                 $materiels[$materiel->Id] = $materiel;
 
@@ -70,6 +102,34 @@ class HomeManager
         }
         
         return $materiels;
+    }
+    
+    function getDistributor()
+    {
+		$connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+		
+		$sql = "SELECT * from distributor WHERE isArchived = 0";
+		$result = $conn->prepare($sql);
+		$result->execute();
+
+		$distributors = Array();
+		if ($result != null)
+		{
+			while ($row = $result->fetch (PDO::FETCH_ASSOC))
+			{
+				$distributor = new Distributor();
+				$distributor->Id = $row['Id'];
+                $distributor->Name = $row['Name'];
+                $distributor->Phone = $row['Phone'];
+                $distributor->Address = $row['Address'];
+                $distributor->UpdateDate = $row['UpdateDate'];
+                
+                $distributors[$distributor->Id] = $distributor;
+            }
+        }
+        
+        return $distributors;
     }
 }
 
@@ -79,6 +139,14 @@ class Materiel {
     public $Description;
     public $Distributor;
     public $Cost;
+    public $UpdateDate;
+}
+
+class Distributor {
+    public $Id;
+	public $Name;
+    public $Phone;
+    public $Address;
     public $UpdateDate;
 }
 

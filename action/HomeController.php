@@ -15,6 +15,15 @@ if (isset ($_POST ['task']))
          case 'delete_materiel' :
 			DeleteMateriel ();
 			break;
+        case 'add_distributor' :
+			AddDistributor ();
+			break;
+        case 'edit_distributor' :
+			EditDistributor ();
+			break;
+         case 'delete_distributor' :
+			DeleteDistributor ();
+			break;
 	}
 }
 
@@ -80,4 +89,50 @@ function DeleteMateriel()
 		echo "<script> window.location.replace('../view/materiel.php') </script>";
 	}
 }
+
+function AddDistributor()
+{
+	if (isset($_POST ['name']) && isset($_POST ['phone']) && isset($_POST ['address'])) {
+        $name = strip_tags ($_POST ['name']);
+		$phone = strip_tags ($_POST ['phone']);
+		$address = strip_tags ($_POST ['address']);
+
+		require_once ("../manager/HomeManager.php");
+		$manager = new HomeManager ();
+		$manager->AddDistributor($name, $phone, $address);
+
+		echo "<script> window.location.replace('../view/distibuteur.php') </script>";
+	}
+}
+
+function EditDistributor()
+{
+	if (isset($_POST ['id']) && isset($_POST ['name']) && isset($_POST ['phone']) && isset($_POST ['address'])) {
+		$id = strip_tags ($_POST ['id']);
+        $name = strip_tags ($_POST ['name']);
+		$phone = strip_tags ($_POST ['phone']);
+		$address = strip_tags ($_POST ['address']);
+        
+		require_once ("../manager/HomeManager.php");
+		$manager = new HomeManager ();
+		$manager->EditDistributor($id, $name, $phone, $address);
+
+		echo "<script> window.location.replace('../view/distibuteur.php') </script>";
+	}
+}
+
+function DeleteDistributor()
+{
+	if (isset($_POST ['id'])) {
+		$id = strip_tags ($_POST ['id']);
+
+		require_once ("../manager/HomeManager.php");
+		$manager = new HomeManager ();
+        
+		$manager->DeleteDistributor($id);
+
+		echo "<script> window.location.replace('../view/distibuteur.php') </script>";
+	}
+}
+
 ?>

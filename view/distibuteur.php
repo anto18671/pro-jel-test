@@ -30,7 +30,7 @@ $distributors = $manager->getDistributor();
         </div>
         <div class="padding"></div>
         
-        <table id="material_datatable" class="display cell-border" style="width:100%">
+        <table id="distributor_datatable" class="display cell-border" style="width:100%">
             <thead>
                 <tr class="front">
                     <th>Nom</th>
@@ -64,33 +64,26 @@ $distributors = $manager->getDistributor();
 
             <form method="POST" action="../action/HomeController.php" id="add_distributor_form">
                 <div class="input_label_wrap">
-                    <label class="label_top" for="add_piece_number">No. Pièce</label>
-                    <input id="add_piece_number" type="text" name="piece_number"/>
+                    <label class="label_top" for="add_name">Nom</label>
+                    <input id="add_name" type="text" name="name"/>
                 </div>
 
                 <div class="input_label_wrap">
-                    <label class="label_top" for="add_description">Description</label>
-                    <input id="add_description" type="text" name="description"/>
+                    <label class="label_top" for="add_phone">Téléphone</label>
+                    <input id="add_phone" type="text" name="phone"/>
                 </div>
 
                 <div class="input_label_wrap">
-                    <label class="label_top" for="add_distributor">Distributeur</label>
-                    <input id="add_distributor" type="text" name="distributor"/>
+                    <label class="label_top" for="add_address">Adresse</label>
+                    <input id="add_address" type="text" name="address"/>
                 </div>
-
-                <div class="input_label_wrap">
-                    <label class="label_top" for="add_cost">Coût</label>
-                    <input id="add_cost" type="text" name="cost"/>
-                    <p class="dollar_sign">$</p>
-                </div>
-                
-                <div class="button_box">
-                    <label id="add_distributor_submit" class="submit_button">Ajouter</label>
-                    <label id="add_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
-                </div>
-                
                 <input type="hidden" name="task" value="add_distributor"/>
             </form>
+            
+            <div class="button_box">
+                <label id="add_distributor_submit" class="submit_button">Ajouter</label>
+                <label id="add_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
+            </div>
 
             <span class="close_popup" id="add_close_popup">X</span>
         </div>
@@ -124,14 +117,14 @@ $distributors = $manager->getDistributor();
                     <p class="dollar_sign">$</p>
                 </div>
                 
-                <div class="button_box">
-                    <label id="edit_distributor_submit" class="submit_button">Éditer</label>
-                    <label id="edit_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
-                </div>
-                
-                <input type="hidden" name="id" id="edit_material_id"/>
+                <input type="hidden" name="id" id="edit_distributor_id"/>
                 <input type="hidden" name="task" value="edit_distributor"/>
             </form>
+            
+            <div class="button_box">
+                <label id="edit_distributor_submit" class="submit_button">Éditer</label>
+                <label id="edit_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
+            </div>
 
             <span class="close_popup" id="edit_close_popup">X</span>
         </div>
@@ -144,14 +137,14 @@ $distributors = $manager->getDistributor();
             <div class="padding"></div>
             
             <form method="POST" action="../action/HomeController.php" id="delete_distributor_form">
-                <div class="button_box">
-                    <label id="delete_distributor_submit" class="submit_button">Effacer</label>
-                    <label id="delete_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
-                </div>
-                
-                <input type="hidden" name="id" id="delete_material_id"/>
+                <input type="hidden" name="id" id="delete_distributor_id"/>
                 <input type="hidden" name="task" value="delete_distributor"/>
             </form>
+            
+            <div class="button_box">
+                <label id="delete_distributor_submit" class="submit_button">Effacer</label>
+                <label id="delete_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
+            </div>
 
             <span class="close_popup" id="delete_close_popup">X</span>
         </div>

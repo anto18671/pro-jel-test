@@ -1,6 +1,6 @@
 $(function() {
     
-    $('#material_datatable').DataTable({
+    $('#materiel_datatable').DataTable({
         "pagingType": "simple_numbers",
         "scrollX": true,
         "columnDefs": [
@@ -39,7 +39,7 @@ $(function() {
         $("#edit_description").val(materiels[id].Description);
         $("#edit_distributor").val(materiels[id].Distributor);
         $("#edit_cost").val(materiels[id].Cost);
-        $("#edit_material_id").val(id);
+        $("#edit_materiel_id").val(id);
         
         $('#edit_materiel_popup_wrap').popup('show');
 	});
@@ -54,7 +54,7 @@ $(function() {
 	$('.delete_materiel_popup_open').click(function(){
         var id = $(this).data("id");
         
-        $("#delete_material_id").val(id);
+        $("#delete_materiel_id").val(id);
         $('#delete_materiel_popup_wrap').popup('show');
 	});
     $('#delete_close_popup').click(function(){
