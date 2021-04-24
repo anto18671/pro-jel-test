@@ -125,6 +125,7 @@ $distributors = $manager->getDistributor();
                 <div class="input_label_wrap">
                     <label class="label_top" for="edit_distributor">Distributeur</label>
                     <select id="edit_distributor" name="distributor" style="width: 152px">
+                        <option style="display: none" value="0">--</option>
                         <?php foreach($distributors as $distributor){ ?>
                             <option value="<?php echo $distributor->Id ?>"><?php echo $distributor->Name ?></option>
                         <?php } ?>

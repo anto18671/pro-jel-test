@@ -142,7 +142,7 @@ ul {
 .admin_nav_wrap{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: stretch;
     margin: 40px 160px;
     background-color: #ffffff;
@@ -153,9 +153,10 @@ ul {
 
 .nav_button {
 	display: block;
-    width: 200px;
-	font-size: 12px;
+	font-size: 16px;
 	padding: 10px 50px;
+    text-decoration: none;
+    color : #000000;
 }
 
 /*--------------- Header End --------------*/

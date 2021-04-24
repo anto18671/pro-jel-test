@@ -35,12 +35,24 @@ $(function() {
     $('#edit_materiel_popup_wrap').popup();
 	$('.edit_materiel_popup_open').click(function(){
         var id = $(this).data("id");
+        var hasDistributor = false;
 
         $("#edit_piece_number").val(materiels[id].PieceNumber);
         $("#edit_description").val(materiels[id].Description);
-        $("#edit_distributor").val(materiels[id].Distributor);
         $("#edit_cost").val(materiels[id].Cost);
         $("#edit_materiel_id").val(id);
+        
+        $('#added_option').remove();
+        $('#edit_distributor').val(0);
+        
+        var select = '#edit_distributor option[value="' + materiels[id].DistributorId + '"]';
+        $(select).prop("selected", true);
+        
+        if($('#edit_distributor').val() == 0){
+            var option = '<option id="added_option" value="' + materiels[id].DistributorId + '">' + materiels[id].DistributorName + '</option>';
+            $("#edit_distributor").append(option);
+            $(select).prop("selected", true);
+        }
         
         $('#edit_materiel_popup_wrap').popup('show');
 	});
