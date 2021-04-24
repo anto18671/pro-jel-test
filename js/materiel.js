@@ -5,8 +5,9 @@ $(function() {
         "scrollX": true,
         "columnDefs": [
 		   {"targets": 3, 'searchable':false, 'orderable':true},
-		   {"targets": 4, 'searchable':false, 'orderable':false},
-           {"targets": 5, 'searchable':false, 'orderable':false}
+		   {"targets": 4, 'searchable':false, 'orderable':true},
+           {"targets": 5, 'searchable':false, 'orderable':false},
+           {"targets": 6, 'searchable':false, 'orderable':false}
 		 ]
     });
     
@@ -81,7 +82,7 @@ $(function() {
             $("#add_description").addClass("boder_red");
             canSubmit = false;
         }
-        if(!distributor){
+        if(!distributor || distributor == 0){
             $("#add_distributor").addClass("boder_red");
             canSubmit = false;
         }

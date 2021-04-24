@@ -25,7 +25,7 @@ $distributors = $manager->getDistributor();
         
         <div class="padding"></div>
         <div class="flex_split">
-            <h1 class="font20" style="width:100px; display: inline;">Matériel</h1>
+            <h1 class="font20" style="width:100px; display: inline;">Distributeur</h1>
             <label id="add_distributor_popup_open" class="submit_button right">Ajouter</label>
         </div>
         <div class="padding"></div>
@@ -36,7 +36,7 @@ $distributors = $manager->getDistributor();
                     <th>Nom</th>
                     <th>Téléphone</th>
                     <th>Adresse</th>
-                    <th>Date</th>
+                    <th style="width: 60px">Date</th>
                     <th style="width: 60px">Éditer</th>
                     <th style="width: 60px">Effacer</th>
                 </tr>
@@ -59,7 +59,7 @@ $distributors = $manager->getDistributor();
     <div id="add_distributor_popup_wrap" class="popup_wrap">
         <div class="distributor_popup">
             
-            <h1 class="font20">Ajouter du matériel</h1>
+            <h1 class="font20">Ajouter un distributeur</h1>
             <div class="padding"></div>
 
             <form method="POST" action="../action/HomeController.php" id="add_distributor_form">
@@ -92,29 +92,23 @@ $distributors = $manager->getDistributor();
     <div id="edit_distributor_popup_wrap" class="popup_wrap">
         <div class="distributor_popup">
             
-            <h1 class="font20">Éditer le matériel</h1>
+            <h1 class="font20">Éditer le distributeur</h1>
             <div class="padding"></div>
 
             <form method="POST" action="../action/HomeController.php" id="edit_distributor_form">
                 <div class="input_label_wrap">
-                    <label class="label_top" for="add_piece_number">No. Pièce</label>
-                    <input id="edit_piece_number" type="text" name="piece_number"/>
+                    <label class="label_top" for="edit_name">Nom</label>
+                    <input id="edit_name" type="text" name="name"/>
                 </div>
 
                 <div class="input_label_wrap">
-                    <label class="label_top" for="add_description">Description</label>
-                    <input id="edit_description" type="text" name="description"/>
+                    <label class="label_top" for="edit_phone">Téléphone</label>
+                    <input id="edit_phone" type="text" name="phone"/>
                 </div>
 
                 <div class="input_label_wrap">
-                    <label class="label_top" for="add_distributor">Distributeur</label>
-                    <input id="edit_distributor" type="text" name="distributor"/>
-                </div>
-
-                <div class="input_label_wrap">
-                    <label class="label_top" for="add_cost">Coût</label>
-                    <input id="edit_cost" type="text" name="cost"/>
-                    <p class="dollar_sign">$</p>
+                    <label class="label_top" for="edit_address">Adresse</label>
+                    <input id="edit_address" type="text" name="address"/>
                 </div>
                 
                 <input type="hidden" name="id" id="edit_distributor_id"/>
@@ -133,7 +127,7 @@ $distributors = $manager->getDistributor();
     <div id="delete_distributor_popup_wrap" class="popup_wrap">
         <div class="distributor_popup">
             
-            <h1 class="font20">Effacer le matériel</h1>
+            <h1 class="font20">Effacer le distributeur</h1>
             <div class="padding"></div>
             
             <form method="POST" action="../action/HomeController.php" id="delete_distributor_form">

@@ -79,7 +79,8 @@ class HomeManager
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
 		
-		$sql = "SELECT * from materiel WHERE isArchived = 0";
+		$sql = "SELECT m.*, d.Name from materiel m
+                INNER JOIN distributor d ON m.Distributor = d.Id";
 		$result = $conn->prepare($sql);
 		$result->execute();
 
@@ -92,7 +93,8 @@ class HomeManager
 				$materiel->Id = $row['Id'];
                 $materiel->PieceNumber = $row['PieceNumber'];
                 $materiel->Description = $row['Description'];
-                $materiel->Distributor = $row['Distributor'];
+                $materiel->DistributorId = $row['Distributor'];
+                $materiel->DistributorName = $row['Name'];
                 $materiel->Cost = $row['Cost'];
                 $materiel->UpdateDate = $row['UpdateDate'];
                 
@@ -137,7 +139,8 @@ class Materiel {
 	public $Id;
 	public $PieceNumber;
     public $Description;
-    public $Distributor;
+    public $DistributorId;
+    public $DistributorName;
     public $Cost;
     public $UpdateDate;
 }

@@ -6,6 +6,7 @@ require_once ("../manager/HomeManager.php");
 $manager = new HomeManager ();
 
 $materiels = $manager->getMateriel();
+$distributors = $manager->getDistributor();
 ?>
 
 
@@ -15,6 +16,7 @@ $materiels = $manager->getMateriel();
 
 <script type="text/javascript">
     var materiels = <?php echo json_encode($materiels) ?>;
+    var distributors = <?php echo json_encode($distributors) ?>;
 </script>
 
 <link rel="stylesheet" href="../css/datatable.css" type="text/css" />
@@ -47,10 +49,10 @@ $materiels = $manager->getMateriel();
                     <tr class="front">
                         <td><?php echo $materiel->PieceNumber ?></td>
                         <td><?php echo $materiel->Description ?></td>
-                        <td><?php echo $materiel->Distributor ?></td>
+                        <td><?php echo $materiel->DistributorName ?></td>
                         <td style="width: 120px" class="end"><?php echo $materiel->Cost . " $";?></td>
                         <td style="width: 60px" class="center"><?php echo $materiel->UpdateDate;?></td>
-                        <td style="width: 60px"><label class="edit_materiel_popup_open table_button" data-id="<?php echo $materiel->Id ?>">Éditer</label></td>
+                        <td style="width: 60px"><label class="edit_materiel_popup_open table_button" data-id="<?php echo $materiel->Id ?>" data-distributor="<?php echo $materiel->Id ?>">Éditer</label></td>
                         <td style="width: 60px"><label class="delete_materiel_popup_open table_button" data-id="<?php echo $materiel->Id ?>">Effacer</label></td>
                     </tr>
                 <?php } ?>
@@ -74,10 +76,15 @@ $materiels = $manager->getMateriel();
                     <label class="label_top" for="add_description">Description</label>
                     <input id="add_description" type="text" name="description"/>
                 </div>
-
+                
                 <div class="input_label_wrap">
                     <label class="label_top" for="add_distributor">Distributeur</label>
-                    <input id="add_distributor" type="text" name="distributor"/>
+                    <select id="add_distributor" name="distributor" style="width: 152px">
+                        <option value="0">--</option>
+                        <?php foreach($distributors as $distributor){ ?>
+                            <option value="<?php echo $distributor->Id ?>"><?php echo $distributor->Name ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
 
                 <div class="input_label_wrap">
@@ -106,18 +113,22 @@ $materiels = $manager->getMateriel();
 
             <form method="POST" action="../action/HomeController.php" id="edit_materiel_form">
                 <div class="input_label_wrap">
-                    <label class="label_top" for="add_piece_number">No. Pièce</label>
+                    <label class="label_top" for="edit_piece_number">No. Pièce</label>
                     <input id="edit_piece_number" type="text" name="piece_number"/>
                 </div>
 
                 <div class="input_label_wrap">
-                    <label class="label_top" for="add_description">Description</label>
+                    <label class="label_top" for="edit_description">Description</label>
                     <input id="edit_description" type="text" name="description"/>
                 </div>
 
                 <div class="input_label_wrap">
-                    <label class="label_top" for="add_distributor">Distributeur</label>
-                    <input id="edit_distributor" type="text" name="distributor"/>
+                    <label class="label_top" for="edit_distributor">Distributeur</label>
+                    <select id="edit_distributor" name="distributor" style="width: 152px">
+                        <?php foreach($distributors as $distributor){ ?>
+                            <option value="<?php echo $distributor->Id ?>"><?php echo $distributor->Name ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
 
                 <div class="input_label_wrap">
