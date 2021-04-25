@@ -193,7 +193,8 @@ ul {
 }
 
 .materiel_popup,
-.distributor_popup{
+.distributor_popup,
+.client_popup{
     position: relative;
     right: 30px;
 	background: white;
@@ -209,3 +210,16 @@ ul {
 }
 
 /*------------- Materiel End  -----------*/
+/*------------- Client Start  -----------*/
+
+.client_email_wrap{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.client_contact_input{
+    width : 164px;
+}
+
+/*------------- Client End  -----------*/

@@ -74,6 +74,36 @@ class HomeManager
 		$result->execute (array($id));
     }
     
+    function AddClient($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4)
+    {
+		$connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+
+        $sql = "INSERT INTO client VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0)";
+		$result = $conn->prepare ($sql);
+		$result->execute (array($name, $address, $city, $contact, $contactPay, $other1, $other2, $email1, $email2, $email3, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4));
+    }
+    
+    function EditClient($id, $name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4)
+    {
+		$connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+        
+        $sql = "UPDATE client SET Name = ?, Address = ?, City = ?, Contact = ?, Email1 = ?, ContactPay = ?, Email2 = ?, Other1 = ?, Email3 = ?, Other2 = ?, Email4 = ?, ValideEmail1 = ?, ValideEmail2 = ?, ValideEmail3 = ?, ValideEmail4 = ? WHERE Id = ?";
+		$result = $conn->prepare ($sql);
+		$result->execute (array($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $id));
+    }
+    
+    function DeleteClient($id)
+    {
+		$connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+        
+        $sql = "UPDATE client SET isArchived = 1 WHERE Id = ?";
+		$result = $conn->prepare ($sql);
+		$result->execute (array($id));
+    }
+    
     function getMateriel()
     {
 		$connManager = new ConnectionManager ();
@@ -140,28 +170,38 @@ class HomeManager
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
 		
-		$sql = "SELECT * from distributor WHERE isArchived = 0";
+		$sql = "SELECT * from client WHERE isArchived = 0";
 		$result = $conn->prepare($sql);
 		$result->execute();
 
-		$distributors = Array();
+		$clients = Array();
 		if ($result != null)
 		{
 			while ($row = $result->fetch (PDO::FETCH_ASSOC))
 			{
-				$distributor = new Distributor();
-				$distributor->Id = $row['Id'];
-                $distributor->Name = $row['Name'];
-                $distributor->Phone = $row['Phone'];
-                $distributor->Address = $row['Address'];
-                $distributor->Contact = $row['Contact'];
-                $distributor->UpdateDate = $row['UpdateDate'];
+				$client = new Client();
+				$client->Id = $row['Id'];
+                $client->Name = $row['Name'];
+                $client->Address = $row['Address'];
+                $client->City = $row['City'];
+                $client->Contact = $row['Contact'];
+                $client->ContactPay = $row['ContactPay'];
+                $client->Other1 = $row['Other1'];
+                $client->Other2 = $row['Other2'];
+                $client->Email1 = $row['Email1'];
+                $client->Email2 = $row['Email2'];
+                $client->Email3 = $row['Email3'];
+                $client->Email4 = $row['Email4'];
+                $client->ValideEmail1 = $row['ValideEmail1'];
+                $client->ValideEmail2 = $row['ValideEmail2'];
+                $client->ValideEmail3 = $row['ValideEmail3'];
+                $client->ValideEmail4 = $row['ValideEmail4'];
                 
-                $distributors[$distributor->Id] = $distributor;
+                $clients[$client->Id] = $client;
             }
         }
         
-        return $distributors;
+        return $clients;
     }
 }
 
@@ -182,6 +222,25 @@ class Distributor {
     public $Address;
     public $Contact;
     public $UpdateDate;
+}
+
+class Client {
+    public $Id;
+	public $Name;
+    public $Address;
+    public $City;
+    public $Contact;
+    public $ContactPay;
+	public $Other1;
+    public $Other2;
+    public $Email1;
+    public $Email2;
+    public $Email3;
+    public $Email4;
+    public $ValideEmail1;
+    public $ValideEmail2;
+    public $ValideEmail3;
+    public $ValideEmail4;
 }
 
 ?>
