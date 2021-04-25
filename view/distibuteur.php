@@ -36,6 +36,7 @@ $distributors = $manager->getDistributor();
                     <th>Nom</th>
                     <th>Téléphone</th>
                     <th>Adresse</th>
+                    <th>Contact</th>
                     <th style="width: 60px">Date</th>
                     <th style="width: 60px">Éditer</th>
                     <th style="width: 60px">Effacer</th>
@@ -47,6 +48,7 @@ $distributors = $manager->getDistributor();
                         <td><?php echo $distributor->Name ?></td>
                         <td><?php echo $distributor->Phone ?></td>
                         <td><?php echo $distributor->Address ?></td>
+                        <td><?php echo $distributor->Contact ?></td>
                         <td style="width: 60px" class="center"><?php echo $distributor->UpdateDate;?></td>
                         <td style="width: 60px"><label class="edit_distributor_popup_open table_button" data-id="<?php echo $distributor->Id ?>">Éditer</label></td>
                         <td style="width: 60px"><label class="delete_distributor_popup_open table_button" data-id="<?php echo $distributor->Id ?>">Effacer</label></td>
@@ -77,6 +79,11 @@ $distributors = $manager->getDistributor();
                     <label class="label_top" for="add_address">Adresse</label>
                     <input id="add_address" type="text" name="address"/>
                 </div>
+                <div class="input_label_wrap">
+                    <label class="label_top" for="add_contact">Contact</label>
+                    <input id="add_contact" type="text" name="contact"/>
+                </div>
+                
                 <input type="hidden" name="task" value="add_distributor"/>
             </form>
             
@@ -109,6 +116,11 @@ $distributors = $manager->getDistributor();
                 <div class="input_label_wrap">
                     <label class="label_top" for="edit_address">Adresse</label>
                     <input id="edit_address" type="text" name="address"/>
+                </div>
+                
+                <div class="input_label_wrap">
+                    <label class="label_top" for="edit_contact">Contact</label>
+                    <input id="edit_contact" type="text" name="contact"/>
                 </div>
                 
                 <input type="hidden" name="id" id="edit_distributor_id"/>

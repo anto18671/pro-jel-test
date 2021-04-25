@@ -4,9 +4,9 @@ $(function() {
         "pagingType": "simple_numbers",
         "scrollX": true,
         "columnDefs": [
-		   {"targets": 3, 'searchable':false, 'orderable':true},
-		   {"targets": 4, 'searchable':false, 'orderable':false},
-           {"targets": 5, 'searchable':false, 'orderable':false}
+		   {"targets": 4, 'searchable':false, 'orderable':true},
+		   {"targets": 5, 'searchable':false, 'orderable':false},
+           {"targets": 6, 'searchable':false, 'orderable':false}
 		 ]
     });
     
@@ -20,6 +20,7 @@ $(function() {
         $("#add_name").val("");
         $("#add_phone").val("");
         $("#add_address").val("");
+        $("#add_contact").val("");
 	});
     $('#add_cancel_popup').click(function(){
         $('#add_distributor_popup_wrap').popup('hide');
@@ -27,6 +28,7 @@ $(function() {
         $("#add_name").val("");
         $("#add_phone").val("");
         $("#add_address").val("");
+        $("#add_contact").val("");
 	});
     
     $('#edit_distributor_popup_wrap').popup();
@@ -36,6 +38,7 @@ $(function() {
         $("#edit_name").val(distributors[id].Name);
         $("#edit_phone").val(distributors[id].Phone);
         $("#edit_address").val(distributors[id].Address);
+        $("#edit_contact").val(distributors[id].Contact);
         $("#edit_distributor_id").val(id);
         
         $('#edit_distributor_popup_wrap').popup('show');
@@ -66,6 +69,7 @@ $(function() {
         var name = $("#add_name").val();
         var phone = $("#add_phone").val();
         var address = $("#add_address").val();
+        var contact = $("#add_contact").val();
 
         $(".boder_red").removeClass("boder_red");
 
@@ -81,6 +85,10 @@ $(function() {
             $("#add_address").addClass("boder_red");
             canSubmit = false;
         }
+        if(!contact){
+            $("#add_contact").addClass("boder_red");
+            canSubmit = false;
+        }
 
         if(canSubmit){
             $("#add_distributor_form").submit();
@@ -92,6 +100,7 @@ $(function() {
         var name = $("#edit_name").val();
         var phone = $("#edit_phone").val();
         var address = $("#edit_address").val();
+        var contact = $("#edit_contact").val();
 
         $(".boder_red").removeClass("boder_red");
 
@@ -105,6 +114,10 @@ $(function() {
         }
         if(!address){
             $("#edit_address").addClass("boder_red");
+            canSubmit = false;
+        }
+        if(!contact){
+            $("#edit_contact").addClass("boder_red");
             canSubmit = false;
         }
 

@@ -92,14 +92,15 @@ function DeleteMateriel()
 
 function AddDistributor()
 {
-	if (isset($_POST ['name']) && isset($_POST ['phone']) && isset($_POST ['address'])) {
+	if (isset($_POST ['name']) && isset($_POST ['phone']) && isset($_POST ['address']) && isset($_POST ['contact'])) {
         $name = strip_tags ($_POST ['name']);
 		$phone = strip_tags ($_POST ['phone']);
 		$address = strip_tags ($_POST ['address']);
+        $contact = strip_tags ($_POST ['contact']);
 
 		require_once ("../manager/HomeManager.php");
 		$manager = new HomeManager ();
-		$manager->AddDistributor($name, $phone, $address);
+		$manager->AddDistributor($name, $phone, $address, $contact);
 
 		echo "<script> window.location.replace('../view/distibuteur.php') </script>";
 	}
@@ -107,15 +108,16 @@ function AddDistributor()
 
 function EditDistributor()
 {
-	if (isset($_POST ['id']) && isset($_POST ['name']) && isset($_POST ['phone']) && isset($_POST ['address'])) {
+	if (isset($_POST ['id']) && isset($_POST ['name']) && isset($_POST ['phone']) && isset($_POST ['address']) && isset($_POST ['contact'])) {
 		$id = strip_tags ($_POST ['id']);
         $name = strip_tags ($_POST ['name']);
 		$phone = strip_tags ($_POST ['phone']);
 		$address = strip_tags ($_POST ['address']);
+        $contact = strip_tags ($_POST ['contact']);
         
 		require_once ("../manager/HomeManager.php");
 		$manager = new HomeManager ();
-		$manager->EditDistributor($id, $name, $phone, $address);
+		$manager->EditDistributor($id, $name, $phone, $address, $contact);
 
 		echo "<script> window.location.replace('../view/distibuteur.php') </script>";
 	}

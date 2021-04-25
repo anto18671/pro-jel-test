@@ -42,26 +42,26 @@ class HomeManager
 		$result->execute (array($id));
     }
     
-    function AddDistributor($name, $phone, $address)
+    function AddDistributor($name, $phone, $address, $contact)
     {
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
         $date = self::GetDate();
 
-        $sql = "INSERT INTO distributor VALUES (null,?,?,?,?,0)";
+        $sql = "INSERT INTO distributor VALUES (null,?,?,?,?,?,0)";
 		$result = $conn->prepare ($sql);
-		$result->execute (array($name, $phone, $address, $date));
+		$result->execute (array($name, $phone, $address, $contact, $date));
     }
     
-    function EditDistributor($id, $name, $phone, $address)
+    function EditDistributor($id, $name, $phone, $address, $contact)
     {
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
         $date = self::GetDate();
         
-        $sql = "UPDATE distributor SET Name = ?, Phone = ?, Address = ?, UpdateDate = ? WHERE Id = ?";
+        $sql = "UPDATE distributor SET Name = ?, Phone = ?, Address = ?, Contact = ?, UpdateDate = ? WHERE Id = ?";
 		$result = $conn->prepare ($sql);
-		$result->execute (array($name, $phone, $address, $date, $id));
+		$result->execute (array($name, $phone, $address, $contact, $date, $id));
     }
     
     function DeleteDistributor($id)
@@ -125,6 +125,36 @@ class HomeManager
                 $distributor->Name = $row['Name'];
                 $distributor->Phone = $row['Phone'];
                 $distributor->Address = $row['Address'];
+                $distributor->Contact = $row['Contact'];
+                $distributor->UpdateDate = $row['UpdateDate'];
+                
+                $distributors[$distributor->Id] = $distributor;
+            }
+        }
+        
+        return $distributors;
+    }
+    
+    function getClient()
+    {
+		$connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+		
+		$sql = "SELECT * from distributor WHERE isArchived = 0";
+		$result = $conn->prepare($sql);
+		$result->execute();
+
+		$distributors = Array();
+		if ($result != null)
+		{
+			while ($row = $result->fetch (PDO::FETCH_ASSOC))
+			{
+				$distributor = new Distributor();
+				$distributor->Id = $row['Id'];
+                $distributor->Name = $row['Name'];
+                $distributor->Phone = $row['Phone'];
+                $distributor->Address = $row['Address'];
+                $distributor->Contact = $row['Contact'];
                 $distributor->UpdateDate = $row['UpdateDate'];
                 
                 $distributors[$distributor->Id] = $distributor;
@@ -150,6 +180,7 @@ class Distributor {
 	public $Name;
     public $Phone;
     public $Address;
+    public $Contact;
     public $UpdateDate;
 }
 
