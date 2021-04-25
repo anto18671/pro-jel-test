@@ -37,7 +37,6 @@ $distributors = $manager->getDistributor();
                     <th>Téléphone</th>
                     <th>Adresse</th>
                     <th>Contact</th>
-                    <th style="width: 60px">Date</th>
                     <th style="width: 60px">Éditer</th>
                     <th style="width: 60px">Effacer</th>
                 </tr>
@@ -49,7 +48,6 @@ $distributors = $manager->getDistributor();
                         <td><?php echo $distributor->Phone ?></td>
                         <td><?php echo $distributor->Address ?></td>
                         <td><?php echo $distributor->Contact ?></td>
-                        <td style="width: 60px" class="center"><?php echo $distributor->UpdateDate;?></td>
                         <td style="width: 60px"><label class="edit_distributor_popup_open table_button" data-id="<?php echo $distributor->Id ?>">Éditer</label></td>
                         <td style="width: 60px"><label class="delete_distributor_popup_open table_button" data-id="<?php echo $distributor->Id ?>">Effacer</label></td>
                     </tr>
