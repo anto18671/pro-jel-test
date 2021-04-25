@@ -38,6 +38,7 @@ $distributors = $manager->getDistributor();
                     <th>No. Pièce</th>
                     <th>Description</th>
                     <th>Distributeur</th>
+                    <th>Fabricant</th>
                     <th>Coût</th>
                     <th style="width: 60px">Date</th>
                     <th style="width: 60px">Éditer</th>
@@ -50,6 +51,7 @@ $distributors = $manager->getDistributor();
                         <td><?php echo $materiel->PieceNumber ?></td>
                         <td><?php echo $materiel->Description ?></td>
                         <td><?php echo $materiel->DistributorName ?></td>
+                        <td><?php echo $materiel->Fabricant ?></td>
                         <td style="width: 120px" class="end"><?php echo $materiel->Cost . " $";?></td>
                         <td style="width: 60px" class="center"><?php echo $materiel->UpdateDate;?></td>
                         <td style="width: 60px"><label class="edit_materiel_popup_open table_button" data-id="<?php echo $materiel->Id ?>" data-distributor="<?php echo $materiel->Id ?>">Éditer</label></td>
@@ -85,6 +87,11 @@ $distributors = $manager->getDistributor();
                             <option value="<?php echo $distributor->Id ?>"><?php echo $distributor->Name ?></option>
                         <?php } ?>
                     </select>
+                </div>
+                
+                <div class="input_label_wrap">
+                    <label class="label_top" for="add_fabricant">Fabricant</label>
+                    <input id="add_fabricant" type="text" name="fabricant"/>
                 </div>
 
                 <div class="input_label_wrap">
@@ -130,6 +137,11 @@ $distributors = $manager->getDistributor();
                             <option value="<?php echo $distributor->Id ?>"><?php echo $distributor->Name ?></option>
                         <?php } ?>
                     </select>
+                </div>
+                
+                <div class="input_label_wrap">
+                    <label class="label_top" for="edit_fabricant">Fabricant</label>
+                    <input id="edit_fabricant" type="text" name="fabricant"/>
                 </div>
 
                 <div class="input_label_wrap">

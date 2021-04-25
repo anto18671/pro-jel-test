@@ -21,6 +21,7 @@ $(function() {
         $("#add_piece_number").val("");
         $("#add_description").val("");
         $("#add_distributor").val("");
+        $("#add_fabricant").val("");
         $("#add_cost").val("");
 	});
     $('#add_cancel_popup').click(function(){
@@ -29,6 +30,7 @@ $(function() {
         $("#add_piece_number").val("");
         $("#add_description").val("");
         $("#add_distributor").val("");
+        $("#add_fabricant").val("");
         $("#add_cost").val("");
 	});
     
@@ -40,6 +42,7 @@ $(function() {
         $("#edit_piece_number").val(materiels[id].PieceNumber);
         $("#edit_description").val(materiels[id].Description);
         $("#edit_cost").val(materiels[id].Cost);
+        $("#edit_fabricant").val(materiels[id].Fabricant);
         $("#edit_materiel_id").val(id);
         
         $('#added_option').remove();
@@ -82,6 +85,7 @@ $(function() {
         var piece_number = $("#add_piece_number").val();
         var description = $("#add_description").val();
         var distributor = $("#add_distributor").val();
+        var fabricant = $("#add_fabricant").val();
         var cost = $("#add_cost").val();
 
         $(".boder_red").removeClass("boder_red");
@@ -96,6 +100,10 @@ $(function() {
         }
         if(!distributor || distributor == 0){
             $("#add_distributor").addClass("boder_red");
+            canSubmit = false;
+        }
+        if(!fabricant){
+            $("#add_fabricant").addClass("boder_red");
             canSubmit = false;
         }
         if(!costValide(cost)){
@@ -113,6 +121,7 @@ $(function() {
         var piece_number = $("#edit_piece_number").val();
         var description = $("#edit_description").val();
         var distributor = $("#edit_distributor").val();
+        var fabricant = $("#edit_fabricant").val();
         var cost = $("#edit_cost").val();
 
         $(".boder_red").removeClass("boder_red");
@@ -127,6 +136,10 @@ $(function() {
         }
         if(!distributor){
             $("#edit_distributor").addClass("boder_red");
+            canSubmit = false;
+        }
+        if(!fabricant){
+            $("#edit_fabricant").addClass("boder_red");
             canSubmit = false;
         }
         if(!costValide(cost)){

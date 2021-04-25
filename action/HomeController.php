@@ -38,10 +38,11 @@ if (isset ($_POST ['task']))
 
 function AddMateriel()
 {
-	if (isset ($_POST ['piece_number']) && isset ($_POST ['description']) && isset ($_POST ['distributor']) && isset ($_POST ['cost'])) {
+	if (isset ($_POST ['piece_number']) && isset ($_POST ['description']) && isset ($_POST ['distributor']) && isset ($_POST ['fabricant']) && isset ($_POST ['cost'])) {
 		$pieceNumber = strip_tags ($_POST ['piece_number']);
 		$description = strip_tags ($_POST ['description']);
 		$distributor = strip_tags ($_POST ['distributor']);
+        $fabricant = strip_tags ($_POST ['fabricant']);
 		$cost = strip_tags ($_POST ['cost']);
 
 		$costSize = strlen($cost);
@@ -54,18 +55,19 @@ function AddMateriel()
 
 		require_once ("../manager/HomeManager.php");
 		$manager = new HomeManager ();
-		$manager->AddMateriel($pieceNumber, $description, $distributor, $cost);
+		$manager->AddMateriel($pieceNumber, $description, $distributor, $fabricant, $cost);
 	}
     echo "<script> window.location.replace('../view/materiel.php') </script>";
 }
 
 function EditMateriel()
 {
-	if (isset($_POST ['id']) && isset($_POST ['piece_number']) && isset($_POST ['description']) && isset($_POST ['distributor']) && isset($_POST ['cost'])) {
+	if (isset($_POST ['id']) && isset($_POST ['piece_number']) && isset($_POST ['description']) && isset($_POST ['distributor']) && isset ($_POST ['fabricant'])  && isset($_POST ['cost'])) {
 		$id = strip_tags ($_POST ['id']);
         $pieceNumber = strip_tags ($_POST ['piece_number']);
 		$description = strip_tags ($_POST ['description']);
 		$distributor = strip_tags ($_POST ['distributor']);
+        $fabricant = strip_tags ($_POST ['fabricant']);
 		$cost = strip_tags ($_POST ['cost']);
 
 		$costSize = strlen($cost);
@@ -78,7 +80,7 @@ function EditMateriel()
 
 		require_once ("../manager/HomeManager.php");
 		$manager = new HomeManager ();
-		$manager->EditMateriel($id, $pieceNumber, $description, $distributor, $cost);
+		$manager->EditMateriel($id, $pieceNumber, $description, $distributor, $fabricant, $cost);
 	}
     echo "<script> window.location.replace('../view/materiel.php') </script>";
 }

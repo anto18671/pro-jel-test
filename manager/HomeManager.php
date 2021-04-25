@@ -10,26 +10,26 @@ class HomeManager
 		return date_create ()->format ('Y-m-d');
 	}
 
-	function AddMateriel($pieceNumber, $description, $distributor, $cost)
+	function AddMateriel($pieceNumber, $description, $distributor, $fabricant, $cost)
     {
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
         $date = self::GetDate();
 
-        $sql = "INSERT INTO materiel VALUES (null,?,?,?,?,?,0)";
+        $sql = "INSERT INTO materiel VALUES (null,?,?,?,?,?,?,0)";
 		$result = $conn->prepare ($sql);
-		$result->execute (array($pieceNumber, $description, $distributor, $cost, $date));
+		$result->execute (array($pieceNumber, $description, $distributor, $cost, $fabricant, $date));
     }
     
-    function EditMateriel($id, $pieceNumber, $description, $distributor, $cost)
+    function EditMateriel($id, $pieceNumber, $description, $distributor, $fabricant, $cost)
     {
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
         $date = self::GetDate();
         
-        $sql = "UPDATE materiel SET PieceNumber = ?, Description = ?, Distributor = ?, Cost = ?, UpdateDate = ? WHERE Id = ?";
+        $sql = "UPDATE materiel SET PieceNumber = ?, Description = ?, Distributor = ?, Cost = ?, Fabricant = ?, UpdateDate = ? WHERE Id = ?";
 		$result = $conn->prepare ($sql);
-		$result->execute (array($pieceNumber, $description, $distributor, $cost, $date, $id));
+		$result->execute (array($pieceNumber, $description, $distributor, $cost, $fabricant, $date, $id));
     }
     
     function DeleteMateriel($id)
@@ -110,7 +110,8 @@ class HomeManager
 		$conn = $connManager->ConnectToDb ();
 		
 		$sql = "SELECT m.*, d.Name from materiel m
-                INNER JOIN distributor d ON m.Distributor = d.Id";
+                INNER JOIN distributor d ON m.Distributor = d.Id
+                WHERE m.isArchived = 0";
 		$result = $conn->prepare($sql);
 		$result->execute();
 
@@ -126,6 +127,7 @@ class HomeManager
                 $materiel->DistributorId = $row['Distributor'];
                 $materiel->DistributorName = $row['Name'];
                 $materiel->Cost = $row['Cost'];
+                $materiel->Fabricant = $row['Fabricant'];
                 $materiel->UpdateDate = $row['UpdateDate'];
                 
                 $materiels[$materiel->Id] = $materiel;
@@ -212,6 +214,7 @@ class Materiel {
     public $DistributorId;
     public $DistributorName;
     public $Cost;
+    public $Fabricant;
     public $UpdateDate;
 }
 
