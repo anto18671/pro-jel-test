@@ -20,13 +20,16 @@
         else if (strpos($actual_link, 'client.php') !== false) {
 	        echo '<script src="../js/client.js'.$version.'"></script>';
         }
+        else if (strpos($actual_link, 'utilisateur.php') !== false) {
+	        echo '<script src="../js/utilisateur.js'.$version.'"></script>';
+        }
     ?>
     
     <div class="admin_nav_wrap">
         <a href="../view/materiel.php" class="nav_button">Matériel</a>
         <a href="../view/distibuteur.php" class="nav_button">Distributeur</a>
         <a href="../view/client.php" class="nav_button">Client</a>
-        <a href="../view/materiel.php" class="nav_button">Utilisateur</a>
+        <a href="../view/utilisateur.php" class="nav_button">Utilisateur</a>
     </div>
 
 </head>

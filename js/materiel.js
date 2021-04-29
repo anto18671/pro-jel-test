@@ -4,10 +4,10 @@ $(function() {
         "pagingType": "simple_numbers",
         "scrollX": true,
         "columnDefs": [
-		   {"targets": 3, 'searchable':false, 'orderable':true},
 		   {"targets": 4, 'searchable':false, 'orderable':true},
-           {"targets": 5, 'searchable':false, 'orderable':false},
-           {"targets": 6, 'searchable':false, 'orderable':false}
+		   {"targets": 5, 'searchable':false, 'orderable':true},
+           {"targets": 6, 'searchable':false, 'orderable':false},
+           {"targets": 7, 'searchable':false, 'orderable':false}
 		 ]
     });
     

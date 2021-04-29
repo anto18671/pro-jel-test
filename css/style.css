@@ -194,7 +194,8 @@ ul {
 
 .materiel_popup,
 .distributor_popup,
-.client_popup{
+.client_popup,
+.user_popup{
     position: relative;
     right: 30px;
 	background: white;
@@ -223,3 +224,11 @@ ul {
 }
 
 /*------------- Client End  -----------*/
+/*------------- Utilisateur Start  -----------*/
+
+.user_email_output{
+    padding: 6px 0 0 0;
+    font-size: 13px;
+}
+
+/*------------- Utilisateur End  -----------*/

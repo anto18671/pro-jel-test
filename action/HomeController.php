@@ -33,6 +33,15 @@ if (isset ($_POST ['task']))
          case 'delete_client' :
 			DeleteClient ();
 			break;
+        case 'add_user' :
+			AddUser ();
+			break;
+        case 'edit_user' :
+			EditUser ();
+			break;
+         case 'delete_user' :
+			DeleteUser ();
+			break;
 	}
 }
 
@@ -239,6 +248,56 @@ function DeleteClient()
 		$manager->DeleteClient($id);
 	}
     echo "<script> window.location.replace('../view/client.php') </script>";
+}
+
+function AddUser()
+{
+	if (isset($_POST ['username']) && isset($_POST ['email']) && isset($_POST ['password']) && isset($_POST ['confirmation']) &&
+            isset($_POST ['admin'])) {
+
+        $username = $_POST ["username"];
+        $email = $_POST ["email"];
+        $password = $_POST ["password"];
+        $confirmation = $_POST ["confirmation"];
+        $isAdmin = $_POST ["admin"];
+        
+        if($password == $confirmation){
+            require_once ("../manager/HomeManager.php");
+            $manager = new HomeManager ();
+            $manager->AddUser($username, $email, $password, $isAdmin);
+        }
+	}
+    echo "<script> window.location.replace('../view/utilisateur.php') </script>";
+
+}
+
+function EditUser()
+{
+	if (isset($_POST ['id']) && isset($_POST ['username']) && isset($_POST ['admin'])) {
+        
+        $id = $_POST ['id'];
+        $username = $_POST ["username"];
+        $isAdmin = $_POST ["admin"];
+        
+        require_once ("../manager/HomeManager.php");
+        $manager = new HomeManager ();
+        $manager->EditUser($id, $username, $isAdmin);
+        
+	}
+    echo "<script> window.location.replace('../view/utilisateur.php') </script>";
+}
+
+function DeleteUser()
+{
+	if (isset($_POST ['id'])) {
+		$id = strip_tags ($_POST ['id']);
+
+		require_once ("../manager/HomeManager.php");
+		$manager = new HomeManager ();
+        
+		$manager->DeleteUser($id);
+	}
+    echo "<script> window.location.replace('../view/utilisateur.php') </script>";
 }
 
 ?>

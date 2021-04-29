@@ -104,6 +104,37 @@ class HomeManager
 		$result->execute (array($id));
     }
     
+    function AddUser($username, $email, $password, $isAdmin)
+    {
+        $connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+        $date = self::GetDate();
+
+        $sql = "INSERT INTO usertablebigname VALUES (null,?,?,?,?,?,?,0)";
+		$result = $conn->prepare ($sql);
+		$result->execute (array($username, $password, $email, $date, $date, $isAdmin));
+    }
+    
+    function EditUser($id, $username, $isAdmin)
+    {
+		$connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+        
+        $sql = "UPDATE usertablebigname SET UserName = ?, IsAdmin = ? WHERE Id = ?";
+		$result = $conn->prepare ($sql);
+		$result->execute (array($username, $isAdmin, $id));
+    }
+    
+    function DeleteUser($id)
+    {
+		$connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+        
+        $sql = "UPDATE usertablebigname SET isArchived = 1 WHERE Id = ?";
+		$result = $conn->prepare ($sql);
+		$result->execute (array($id));
+    }
+    
     function getMateriel()
     {
 		$connManager = new ConnectionManager ();
@@ -205,6 +236,34 @@ class HomeManager
         
         return $clients;
     }
+    
+    function getUser()
+    {
+		$connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+		
+		$sql = "SELECT Id, UserName, Email, DateCreated, IsAdmin from usertablebigname WHERE isArchived = 0";
+		$result = $conn->prepare($sql);
+		$result->execute();
+
+		$users = Array();
+		if ($result != null)
+		{
+			while ($row = $result->fetch (PDO::FETCH_ASSOC))
+			{
+				$user = new User();
+                $user->Id = $row['Id'];
+				$user->UserName = $row['UserName'];
+                $user->Email = $row['Email'];
+                $user->DateCreated = $row['DateCreated'];
+                $user->IsAdmin = $row['IsAdmin'];
+                
+                $users[$user->Id] = $user;
+            }
+        }
+        
+        return $users;
+    }
 }
 
 class Materiel {
@@ -246,4 +305,11 @@ class Client {
     public $ValideEmail4;
 }
 
+class User {
+    public $Id;
+    public $UserName;
+    public $Email;
+    public $DateCreated;
+    public $IsAdmin;
+}
 ?>
