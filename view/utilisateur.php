@@ -4,8 +4,8 @@ include('../include/ValidateAdmin.php');
 
 require_once ("../manager/HomeManager.php");
 $manager = new HomeManager ();
-
 $users = $manager->getUser();
+$key = $manager->GenerateKey();
 ?>
 
 
@@ -15,6 +15,7 @@ $users = $manager->getUser();
 
 <script type="text/javascript">
     var users = <?php echo json_encode($users) ?>;
+    var key = <?php echo json_encode($key) ?>;
 </script>
 
 <link rel="stylesheet" href="../css/datatable.css" type="text/css" />
@@ -73,19 +74,16 @@ $users = $manager->getUser();
                 </div>
                 <div class="input_label_wrap">
                     <label class="label_top" for="add_password">Mot de Passe</label>
-                    <input id="add_password" type="text" name="password"/>
+                    <input id="add_password" type="password" name="password"/>
                 </div>
                 <div class="input_label_wrap">
                     <label class="label_top" for="add_confirmation">Confirmation</label>
-                    <input id="add_confirmation" type="text" name="confirmation"/>
+                    <input id="add_confirmation" type="password" name="confirmation"/>
                 </div>
                 <div class="input_label_wrap">
                     <label class="label_top">Admin</label>
                     <input type="checkbox" id="add_check_admin" unchecked="true"/>
                 </div>
-
-                <input type="hidden" name="admin" id="add_admin"/>
-                <input type="hidden" name="task" value="add_user"/>
             </form>
             
             <div class="button_box">

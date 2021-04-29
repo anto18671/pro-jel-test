@@ -109,10 +109,11 @@ class HomeManager
         $connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
         $date = self::GetDate();
+        $hashPassword = hash('sha512', $password);
 
         $sql = "INSERT INTO usertablebigname VALUES (null,?,?,?,?,?,?,0)";
 		$result = $conn->prepare ($sql);
-		$result->execute (array($username, $password, $email, $date, $date, $isAdmin));
+		$result->execute (array($username, $hashPassword, $email, $date, $date, $isAdmin));
     }
     
     function EditUser($id, $username, $isAdmin)
@@ -162,7 +163,6 @@ class HomeManager
                 $materiel->UpdateDate = $row['UpdateDate'];
                 
                 $materiels[$materiel->Id] = $materiel;
-
             }
         }
         
@@ -263,6 +263,20 @@ class HomeManager
         }
         
         return $users;
+    }
+    
+    function GenerateKey ()
+    {
+        $characters = '0123456789';
+        $size = strlen($characters) - 1;
+        $str = '';
+        for ($i = 0; $i < 3; $i++) {
+            $str = $characters[rand(0, $size)];
+        }
+        
+        $_SESSION['Key'] = $str;
+        
+        return $str;
     }
 }
 

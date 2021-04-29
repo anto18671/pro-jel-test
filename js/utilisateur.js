@@ -93,13 +93,26 @@ $(function() {
         }
 
         if(canSubmit){
+            var admin = 0;
             if($("#add_check_admin").prop("checked")){
-                $("#add_admin").val(1);
+                admin = 1;
             }
-            else{
-                $("#add_admin").val(0);
-            }
-            $("#add_user_form").submit();
+            
+            $.ajax({
+				url : "../action/HomeController.php",
+				data : { 
+                    task : encode('add_user'),
+                    username : encode(username),
+                    email : encode(email),
+                    password : encode(password),
+                    confirmation : encode(confirmation),
+                    admin : encode(admin)
+                },
+				type: 'POST',
+				success : function(data) {			
+					window.location.reload();
+				}
+			});
         }
     });
     
@@ -128,4 +141,14 @@ $(function() {
     $("#delete_user_submit").click(function(){
         $("#delete_user_form").submit();
     });
+    
+    function encode(str) {
+        var encoded = "";
+        for (let i = 0; i < str.length; i++) {
+            var a = str.charCodeAt(i);
+            var b = a ^ key;
+            encoded = encoded+String.fromCharCode(b);
+        }
+        return encoded;
+    }
 });

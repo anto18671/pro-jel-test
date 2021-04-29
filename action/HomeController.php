@@ -33,7 +33,7 @@ if (isset ($_POST ['task']))
          case 'delete_client' :
 			DeleteClient ();
 			break;
-        case 'add_user' :
+        case decode('add_user') :
 			AddUser ();
 			break;
         case 'edit_user' :
@@ -66,6 +66,7 @@ function AddMateriel()
 		$manager = new HomeManager ();
 		$manager->AddMateriel($pieceNumber, $description, $distributor, $fabricant, $cost);
 	}
+    
     echo "<script> window.location.replace('../view/materiel.php') </script>";
 }
 
@@ -91,6 +92,7 @@ function EditMateriel()
 		$manager = new HomeManager ();
 		$manager->EditMateriel($id, $pieceNumber, $description, $distributor, $fabricant, $cost);
 	}
+    
     echo "<script> window.location.replace('../view/materiel.php') </script>";
 }
 
@@ -104,6 +106,7 @@ function DeleteMateriel()
         
 		$manager->DeleteMateriel($id);
 	}
+    
     echo "<script> window.location.replace('../view/materiel.php') </script>";
 }
 
@@ -119,6 +122,7 @@ function AddDistributor()
 		$manager = new HomeManager ();
 		$manager->AddDistributor($name, $phone, $address, $contact);
 	}
+    
     echo "<script> window.location.replace('../view/distibuteur.php') </script>";
 }
 
@@ -135,6 +139,7 @@ function EditDistributor()
 		$manager = new HomeManager ();
 		$manager->EditDistributor($id, $name, $phone, $address, $contact);
 	}
+    
     echo "<script> window.location.replace('../view/distibuteur.php') </script>";
 }
 
@@ -148,6 +153,7 @@ function DeleteDistributor()
         
 		$manager->DeleteDistributor($id);
 	}
+    
     echo "<script> window.location.replace('../view/distibuteur.php') </script>";
 }
 
@@ -190,8 +196,8 @@ function AddClient()
 		$manager = new HomeManager ();
 		$manager->AddClient($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4);
 	}
+    
     echo "<script> window.location.replace('../view/client.php') </script>";
-
 }
 
 function EditClient()
@@ -234,6 +240,7 @@ function EditClient()
 		$manager = new HomeManager ();
 		$manager->EditClient($id, $name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4);
 	}
+    
     echo "<script> window.location.replace('../view/client.php') </script>";
 }
 
@@ -255,11 +262,11 @@ function AddUser()
 	if (isset($_POST ['username']) && isset($_POST ['email']) && isset($_POST ['password']) && isset($_POST ['confirmation']) &&
             isset($_POST ['admin'])) {
 
-        $username = $_POST ["username"];
-        $email = $_POST ["email"];
-        $password = $_POST ["password"];
-        $confirmation = $_POST ["confirmation"];
-        $isAdmin = $_POST ["admin"];
+        $username = decode($_POST ["username"]);
+        $email = decode($_POST ["email"]);
+        $password = decode($_POST ["password"]);
+        $confirmation = decode($_POST ["confirmation"]);
+        $isAdmin = decode($_POST ["admin"]);
         
         if($password == $confirmation){
             require_once ("../manager/HomeManager.php");
@@ -267,8 +274,8 @@ function AddUser()
             $manager->AddUser($username, $email, $password, $isAdmin);
         }
 	}
+    
     echo "<script> window.location.replace('../view/utilisateur.php') </script>";
-
 }
 
 function EditUser()
@@ -284,6 +291,7 @@ function EditUser()
         $manager->EditUser($id, $username, $isAdmin);
         
 	}
+    
     echo "<script> window.location.replace('../view/utilisateur.php') </script>";
 }
 
@@ -297,7 +305,18 @@ function DeleteUser()
         
 		$manager->DeleteUser($id);
 	}
+    
     echo "<script> window.location.replace('../view/utilisateur.php') </script>";
+}
+
+function decode($encoded) {
+    $decoded = "";
+    for( $i = 0; $i < strlen($encoded); $i++ ) {
+        $b = ord($encoded[$i]);
+        $a = $b ^ $_SESSION['Key'];
+        $decoded .= chr($a);
+    }
+    return $decoded;
 }
 
 ?>
