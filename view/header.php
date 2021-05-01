@@ -1,6 +1,12 @@
 <?php
 	$actual_link = "{$_SERVER['REQUEST_URI']}";
     $version = "?v=0.01";
+    $isAdmin = false;
+    
+    if (!empty($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1){
+        $isAdmin = true;
+    }
+    
 ?>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -16,7 +22,9 @@
             <a href="../view/materiel.php" class="nav_button">Matériel</a>
             <a href="../view/distibuteur.php" class="nav_button">Distributeur</a>
             <a href="../view/client.php" class="nav_button">Client</a>
-            <a href="../view/utilisateur.php" class="nav_button">Utilisateur</a>
+            <?php if ($isAdmin){ ?>
+                <a href="../view/utilisateur.php" class="nav_button">Utilisateur</a>
+            <?php } ?>
         </div>
 
     <?php } ?>
@@ -32,7 +40,15 @@
 	        echo '<script src="../js/client.js'.$version.'"></script>';
         }
         else if (strpos($actual_link, 'utilisateur.php') !== false) {
-	        echo '<script src="../js/utilisateur.js'.$version.'"></script>';
+            if($isAdmin){
+                echo '<script src="../js/utilisateur.js'.$version.'"></script>';
+            }
+            else{
+                echo "<script> window.location.replace('../view/materiel.php') </script>";
+            }
+        }
+        else if (strpos($actual_link, 'login.php') !== false) {
+	        echo '<script src="../js/login.js'.$version.'"></script>';
         }
     ?>
 </head>

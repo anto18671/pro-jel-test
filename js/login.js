@@ -1,6 +1,6 @@
 $(function() {
     
-    $("#add_user_submit").click(function(){
+    $("#login_submit").click(function(){
         var canSubmit = true;
         var username = $("#username").val();
         var password = $("#password").val();
@@ -17,28 +17,9 @@ $(function() {
         }
 
         if(canSubmit){
-            $.ajax({
-				url : "../action/HomeController.php",
-				data : { 
-                    task : encode('login_task'),
-                    username : encode(username),
-                    password : encode(password)
-                },
-				type: 'POST',
-				success : function(data) {			
-					window.location.reload();
-				}
-			});
+            $("#username_output").val(username);
+            $("#password_output").val(sha256(password));
+            $("#login_submit_form").submit();
         }
     });
-    
-    function encode(str) {
-        var encoded = "";
-        for (let i = 0; i < str.length; i++) {
-            var a = str.charCodeAt(i);
-            var b = a ^ 20;
-            encoded = encoded+String.fromCharCode(b);
-        }
-        return encoded;
-    }
 });

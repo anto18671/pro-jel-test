@@ -5,7 +5,6 @@ include('../include/ValidateAdmin.php');
 require_once ("../manager/HomeManager.php");
 $manager = new HomeManager ();
 $users = $manager->getUser();
-$key = $manager->GenerateKey();
 ?>
 
 
@@ -15,11 +14,11 @@ $key = $manager->GenerateKey();
 
 <script type="text/javascript">
     var users = <?php echo json_encode($users) ?>;
-    var key = <?php echo json_encode($key) ?>;
 </script>
 
 <link rel="stylesheet" href="../css/datatable.css" type="text/css" />
 <script src="../js/datatable.js" type="text/javascript"></script>
+<script src="../js/sha256.js" type="text/javascript"></script>
 
 <body class="body_wrap">
     <div class="box_wrap">
@@ -63,7 +62,7 @@ $key = $manager->GenerateKey();
             <h1 class="font20">Ajouter un utilisateur</h1>
             <div class="padding"></div>
 
-            <form method="POST" action="../action/HomeController.php" id="add_user_form">
+            <form>
                 <div class="input_label_wrap">
                     <label class="label_top" for="add_username">Nom d'utilisateur</label>
                     <input id="add_username" type="text" name="username"/>

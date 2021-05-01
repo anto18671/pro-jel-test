@@ -2,21 +2,22 @@
 $dir = dirname (__FILE__);
 require_once ($dir . '/ConnectionManager.php');
 
-function Login($userName, $password)
+class LoginManager
 {
-    $connManager = new ConnectionManager ();
-    $conn = $connManager->ConnectToDb ();
-
-    $sql = "SELECT Id, Password, UserName, Email, IsAdmin from usertablebigname WHERE UserName = ? AND isArchived = 0 LIMIT 1";
-    $result = $conn->prepare ($sql);
-    $result->execute (array($userName));
-
-    if ($result != null)
+    function Login($username, $password)
     {
-        while ($row = $result->fetch (PDO::FETCH_ASSOC))
+        $connManager = new ConnectionManager ();
+        $conn = $connManager->ConnectToDb ();
+
+        $sql = "SELECT Id, Password, UserName, Email, IsAdmin from usertablebigname WHERE UserName = ? AND isArchived = 0 LIMIT 1";
+        $result = $conn->prepare ($sql);
+        $result->execute (array($username));
+        
+        if ($result != null)
         {
-            $hashPassword = hash('sha512', $row ['Password']);
-            if ($hashPassword == $password)
+            $row = $result->fetch (PDO::FETCH_ASSOC);
+            
+            if ($password == $row ['Password'])
             {
                 ini_set('session.gc_maxlifetime', 7200);
                 $_SESSION ['Id'] = $row ['Id'];
@@ -31,12 +32,13 @@ function Login($userName, $password)
                 echo "<script> alert('Wrong email or password. Try again.') </script>";
                 echo "<script> window.location.replace('../view/login.php') </script>";
             }
+            
         }
-    }
-    else
-    {
-        echo "<script> alert('Wrong informations. Try again.') </script>";
-        echo "<script> window.location.replace('../view/login.php') </script>";
+        else
+        {
+            echo "<script> alert('Wrong informations. Try again.') </script>";
+            echo "<script> window.location.replace('../view/login.php') </script>";
+        }
     }
 }
 ?>

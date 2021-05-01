@@ -1,5 +1,9 @@
 $(function() {
     
+    $("#frmCSVImport").on("submit", function () {
+        $("#frmCSVImport").submit();
+    });
+    
     $('#materiel_datatable').DataTable({
         "pagingType": "simple_numbers",
         "scrollX": true,

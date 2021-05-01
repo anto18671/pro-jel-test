@@ -2,10 +2,13 @@
 session_start ();
 header("Content-Type: text/html;charset=utf-8");
 
-if (isset ($_POST ['task']))
+if (isset ($_POST ['task']) && !empty($_SESSION['UserName']))
 {
 	switch ($_POST ['task'])
 	{
+        case 'excel_submit' :
+			ImportCsv ();
+			break;
 		case 'add_materiel' :
 			AddMateriel ();
 			break;
@@ -33,7 +36,7 @@ if (isset ($_POST ['task']))
          case 'delete_client' :
 			DeleteClient ();
 			break;
-        case decode('add_user') :
+        case 'add_user':
 			AddUser ();
 			break;
         case 'edit_user' :
@@ -260,13 +263,13 @@ function DeleteClient()
 function AddUser()
 {
 	if (isset($_POST ['username']) && isset($_POST ['email']) && isset($_POST ['password']) && isset($_POST ['confirmation']) &&
-            isset($_POST ['admin'])) {
+            isset($_POST ['admin']) && $_SESSION['IsAdmin'] == 1) {
 
-        $username = decode($_POST ["username"]);
-        $email = decode($_POST ["email"]);
-        $password = decode($_POST ["password"]);
-        $confirmation = decode($_POST ["confirmation"]);
-        $isAdmin = decode($_POST ["admin"]);
+        $username = $_POST ["username"];
+        $email = $_POST ["email"];
+        $password = $_POST ["password"];
+        $confirmation = $_POST ["confirmation"];
+        $isAdmin = $_POST ["admin"];
         
         if($password == $confirmation){
             require_once ("../manager/HomeManager.php");
@@ -280,7 +283,7 @@ function AddUser()
 
 function EditUser()
 {
-	if (isset($_POST ['id']) && isset($_POST ['username']) && isset($_POST ['admin'])) {
+	if (isset($_POST ['id']) && isset($_POST ['username']) && isset($_POST ['admin']) && $_SESSION['IsAdmin'] == 1) {
         
         $id = $_POST ['id'];
         $username = $_POST ["username"];
@@ -297,7 +300,7 @@ function EditUser()
 
 function DeleteUser()
 {
-	if (isset($_POST ['id'])) {
+	if (isset($_POST ['id']) && $_SESSION['IsAdmin'] == 1) {
 		$id = strip_tags ($_POST ['id']);
 
 		require_once ("../manager/HomeManager.php");
@@ -309,14 +312,29 @@ function DeleteUser()
     echo "<script> window.location.replace('../view/utilisateur.php') </script>";
 }
 
-function decode($encoded) {
-    $decoded = "";
-    for( $i = 0; $i < strlen($encoded); $i++ ) {
-        $b = ord($encoded[$i]);
-        $a = $b ^ $_SESSION['Key'];
-        $decoded .= chr($a);
+function ImportCsv()
+{
+    if (isset($_POST["import"])) {
+        
+        $list = array();
+    
+        $fileName = $_FILES["file"]["tmp_name"];
+        if ($_FILES["file"]["size"] > 0) {
+            $file = fopen($fileName, "r");
+            while (($column = fgetcsv($file, 10000, ",")) !== FALSE) {
+                $userId = "";
+                if (isset($column[0])) {
+                    array_push($list, array($column[0], $column[1], $column[2]));
+                }
+            }
+        }
+        
+        require_once ("../manager/HomeManager.php");
+        $manager = new HomeManager ();
+        $manager->ImportCsv($list);
     }
-    return $decoded;
+    
+    dfvg();
 }
 
 ?>

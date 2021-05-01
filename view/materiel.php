@@ -24,6 +24,19 @@ $distributors = $manager->getDistributor();
 
 <body class="body_wrap">
     <div class="box_wrap">
+        <form action="../action/HomeController.php" class="form-horizontal" method="post" name="frmCSVImport" id="frmCSVImport" enctype="multipart/form-data">
+            <div class="input-row">
+                <label class="col-md-4 control-label">Choose CSV
+                    File</label> <input type="file" name="file"
+                    id="file" accept=".csv">
+                <button type="submit" id="submit" name="import"
+                    class="btn-submit">Import</button>
+                    <input type="hidden" name="task" value="excel_submit"/>
+                <br />
+            </div>
+        </form>
+    </div>
+    <div class="box_wrap">
         
         <div class="padding"></div>
         <div class="flex_split">
@@ -31,7 +44,7 @@ $distributors = $manager->getDistributor();
             <label id="add_materiel_popup_open" class="submit_button right">Ajouter</label>
         </div>
         <div class="padding"></div>
-        
+                
         <table id="materiel_datatable" class="display cell-border" style="width:100%">
             <thead>
                 <tr class="front">
@@ -182,7 +195,5 @@ $distributors = $manager->getDistributor();
             <span class="close_popup" id="delete_close_popup">X</span>
         </div>
     </div>
-    
 </body>
-
 </html>

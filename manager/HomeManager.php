@@ -74,14 +74,14 @@ class HomeManager
 		$result->execute (array($id));
     }
     
-    function AddClient($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4)
+    function AddClient($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2)
     {
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
 
-        $sql = "INSERT INTO client VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0)";
+        $sql = "INSERT INTO client VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,?,?,?,?,?,?)";
 		$result = $conn->prepare ($sql);
-		$result->execute (array($name, $address, $city, $contact, $contactPay, $other1, $other2, $email1, $email2, $email3, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4));
+		$result->execute (array($name, $address, $city, $contact, $contactPay, $other1, $other2, $email1, $email2, $email3, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2));
     }
     
     function EditClient($id, $name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4)
@@ -106,34 +106,39 @@ class HomeManager
     
     function AddUser($username, $email, $password, $isAdmin)
     {
-        $connManager = new ConnectionManager ();
-		$conn = $connManager->ConnectToDb ();
-        $date = self::GetDate();
-        $hashPassword = hash('sha512', $password);
+        if ($_SESSION['IsAdmin'] == 1) {
+            $connManager = new ConnectionManager ();
+            $conn = $connManager->ConnectToDb ();
+            $date = self::GetDate();
 
-        $sql = "INSERT INTO usertablebigname VALUES (null,?,?,?,?,?,?,0)";
-		$result = $conn->prepare ($sql);
-		$result->execute (array($username, $hashPassword, $email, $date, $date, $isAdmin));
+            $sql = "INSERT INTO usertablebigname VALUES (null,?,?,?,?,?,?,0)";
+            $result = $conn->prepare ($sql);
+            $result->execute (array($username, $password, $email, $date, $date, $isAdmin));
+        }
     }
     
     function EditUser($id, $username, $isAdmin)
     {
-		$connManager = new ConnectionManager ();
-		$conn = $connManager->ConnectToDb ();
-        
-        $sql = "UPDATE usertablebigname SET UserName = ?, IsAdmin = ? WHERE Id = ?";
-		$result = $conn->prepare ($sql);
-		$result->execute (array($username, $isAdmin, $id));
+        if ($_SESSION['IsAdmin'] == 1) {
+            $connManager = new ConnectionManager ();
+            $conn = $connManager->ConnectToDb ();
+
+            $sql = "UPDATE usertablebigname SET UserName = ?, IsAdmin = ? WHERE Id = ?";
+            $result = $conn->prepare ($sql);
+            $result->execute (array($username, $isAdmin, $id));
+        }
     }
     
     function DeleteUser($id)
     {
-		$connManager = new ConnectionManager ();
-		$conn = $connManager->ConnectToDb ();
-        
-        $sql = "UPDATE usertablebigname SET isArchived = 1 WHERE Id = ?";
-		$result = $conn->prepare ($sql);
-		$result->execute (array($id));
+        if ($_SESSION['IsAdmin'] == 1) {
+            $connManager = new ConnectionManager ();
+            $conn = $connManager->ConnectToDb ();
+
+            $sql = "UPDATE usertablebigname SET isArchived = 1 WHERE Id = ?";
+            $result = $conn->prepare ($sql);
+            $result->execute (array($id));
+        }
     }
     
     function getMateriel()
@@ -265,18 +270,43 @@ class HomeManager
         return $users;
     }
     
-    function GenerateKey ()
+    function ImportCsv($list)
     {
-        $characters = '0123456789';
-        $size = strlen($characters) - 1;
-        $str = '';
-        for ($i = 0; $i < 3; $i++) {
-            $str = $characters[rand(0, $size)];
+        $size = sizeof($list);
+        $container = array();
+        
+        for($i = 0; $i < $size; $i++){
+            $ligne = array();
+            array_push($ligne, $list[$i+0][0]);
+            array_push($ligne, $list[$i+1][0]);
+            array_push($ligne, $list[$i+2][0]);
+            array_push($ligne, $list[$i+3][0]);
+            array_push($ligne, $list[$i+4][0]);
+            
+            if($list[$i+1][1])
+            {
+                array_push($ligne, $list[$i+1][1]);
+            }
+            else
+            {
+                array_push($ligne, "");
+            }
+            if($list[$i+1][2])
+            {
+                array_push($ligne, $list[$i+1][2]);
+            }
+            else
+            {
+                array_push($ligne, "");
+            }
+            
+            $i = $i + 5;
         }
         
-        $_SESSION['Key'] = $str;
-        
-        return $str;
+        foreach($container as $c){
+            $bundle = preg_split ("/\,/", $c[3]); 
+            self::AddClient($c[1], $c[2], $bundle[0], "", "", "", "", "", "", "", "", 0, 0, 0, 0, $c[0], $bundle[1], $bundle[2], $c[4], $c[5], $c[6]);
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 $(function() {
     
-    $('#user_datatable').DataTable({
+    var oTable = $('#user_datatable').DataTable({
         "pagingType": "simple_numbers",
         "scrollX": true,
         "columnDefs": [
@@ -68,10 +68,10 @@ $(function() {
 
     $("#add_user_submit").click(function(){
         var canSubmit = true;
-        var username = $("#add_username").val();
-        var email = $("#add_email").val();
-        var password = $("#add_password").val();
-        var confirmation = $("#add_confirmation").val();
+        var username = encode($("#add_username").val());
+        var email = encode($("#add_email").val());
+        var password = encode($("#add_password").val());
+        var confirmation = encode($("#add_confirmation").val());
 
         $(".boder_red").removeClass("boder_red");
 
@@ -93,20 +93,20 @@ $(function() {
         }
 
         if(canSubmit){
-            var admin = 0;
+            var admin = encode('0');
             if($("#add_check_admin").prop("checked")){
-                admin = 1;
+                admin = encode('1');
             }
             
             $.ajax({
 				url : "../action/HomeController.php",
 				data : { 
-                    task : encode('add_user'),
-                    username : encode(username),
-                    email : encode(email),
-                    password : encode(password),
-                    confirmation : encode(confirmation),
-                    admin : encode(admin)
+                    task : 'add_user',
+                    username : username,
+                    email : email,
+                    password : sha256(password),
+                    confirmation : sha256(confirmation),
+                    admin : admin
                 },
 				type: 'POST',
 				success : function(data) {			
@@ -143,12 +143,6 @@ $(function() {
     });
     
     function encode(str) {
-        var encoded = "";
-        for (let i = 0; i < str.length; i++) {
-            var a = str.charCodeAt(i);
-            var b = a ^ key;
-            encoded = encoded+String.fromCharCode(b);
-        }
-        return encoded;
+        return str;
     }
 });
