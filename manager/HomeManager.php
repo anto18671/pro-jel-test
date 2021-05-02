@@ -236,6 +236,12 @@ class HomeManager
                 $client->ValideEmail2 = $row['ValideEmail2'];
                 $client->ValideEmail3 = $row['ValideEmail3'];
                 $client->ValideEmail4 = $row['ValideEmail4'];
+                $client->noClient = $row['noClient'];
+                $client->Province = $row['Province'];
+                $client->CodePostal = $row['CodePostal'];
+                $client->Pays = $row['Pays'];
+                $client->Telephone1 = $row['Telephone1'];
+                $client->Telephone2 = $row['Telephone2'];
                 
                 $clients[$client->Id] = $client;
             }
@@ -378,6 +384,13 @@ class Client {
     public $ValideEmail2;
     public $ValideEmail3;
     public $ValideEmail4;
+    public $noClient;
+    public $Province;
+    public $CodePostal;
+    public $Pays;
+    public $Telephone1;
+    public $Telephone2;
+    
 }
 
 class User {

@@ -54,6 +54,14 @@ $(function() {
         $("#add_email3").val("");
         $("#add_other2").val("");
         $("#add_email4").val("");
+        
+        $("#add_noClient").val("");
+        $("#add_province").val("");
+        $("#add_codePostal").val("");
+        $("#add_pays").val("");
+        $("#add_telephone1").val("");
+        $("#add_telephone2").val("");
+        
         $("#add_valideEmail1").prop("unchecked", true);
         $("#add_valideEmail2").prop("unchecked", true);
         $("#add_valideEmail3").prop("unchecked", true);
@@ -75,6 +83,14 @@ $(function() {
         $("#edit_email3").val(clients[id].Email3);
         $("#edit_other2").val(clients[id].Other2);
         $("#edit_email4").val(clients[id].Email4);
+        
+        $("#edit_noClient").val(clients[id].noClient);
+        $("#edit_province").val(clients[id].Province);
+        $("#edit_codePostal").val(clients[id].CodePostal);
+        $("#edit_pays").val(clients[id].Pays);
+        $("#edit_telephone1").val(clients[id].Telephone1);
+        $("#edit_telephone2").val(clients[id].Telephone2);
+        
         $("#edit_valideEmail1").prop("checked", clients[id].ValideEmail1);
         $("#edit_valideEmail2").prop("checked", clients[id].ValideEmail2);
         $("#edit_valideEmail3").prop("checked", clients[id].ValideEmail3);

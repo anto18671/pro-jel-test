@@ -224,6 +224,13 @@ function EditClient()
         $contactPay = $_POST ["contactPay"];
         $email2 = $_POST ["email2"];
         
+        $noClient = $_POST ["noClient"];
+        $telephone1 = $_POST ["telephone1"];
+        $telephone2 = $_POST ["telephone2"];
+        $province = $_POST ["province"];
+        $codePostal = $_POST ["codePostal"];
+        $pays = $_POST ["pays"];
+        
         $valideEmail1 = $_POST ["valide_email1"];
         $valideEmail2 = $_POST ["valide_email2"];
         
@@ -248,9 +255,9 @@ function EditClient()
         
 		require_once ("../manager/HomeManager.php");
 		$manager = new HomeManager ();
-		$manager->EditClient($id, $name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4);
+		$manager->EditClient($id, $name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2);
 	}
-    
+
     echo "<script> window.location.replace('../view/client.php') </script>";
 }
 

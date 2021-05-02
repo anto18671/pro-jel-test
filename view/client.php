@@ -200,20 +200,63 @@ $clients = $manager->getClient();
             <div class="padding"></div>
 
             <form method="POST" action="../action/HomeController.php" id="edit_client_form">
-                <div class="input_label_wrap">
-                    <label class="label_top" for="edit_name">Nom</label>
-                    <input id="edit_name" type="text" name="name"/>
+                <div class="client_email_wrap">
+                    <div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_name">Nom</label>
+                            <input id="edit_name" type="text" name="name"/>
+                        </div>
+
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_address">Adresse</label>
+                            <input id="edit_address" type="text" name="address"/>
+                        </div>
+
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_city">Ville</label>
+                            <input id="edit_city" type="text" name="city"/>
+                        </div>
+                    </div>
+                    <div style="padding-left: 16px">
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_noClient">No. Client</label>
+                            <input id="edit_noClient" type="text" name="noClient"/>
+                        </div>
+
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_telephone1">Téléphone1</label>
+                            <input id="edit_telephone1" type="text" name="telephone1"/>
+                        </div>
+
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_telephone2">Téléphone2</label>
+                            <input id="edit_telephone2" type="text" name="telephone2"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="client_email_wrap">
+                    <div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_province">Province</label>
+                            <input id="edit_province" type="text" name="province"/>
+                        </div>
+                    </div>
+                    <div style="padding-left: 16px">
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_codePostal">Code Postal</label>
+                            <input id="edit_codePostal" type="text" name="codePostal"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="client_email_wrap">
+                    <div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_pays">Pays</label>
+                            <input id="edit_pays" type="text" name="pays"/>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="input_label_wrap">
-                    <label class="label_top" for="edit_address">Adresse</label>
-                    <input id="edit_address" type="text" name="address"/>
-                </div>
-                
-                <div class="input_label_wrap">
-                    <label class="label_top" for="edit_city">Ville</label>
-                    <input id="edit_city" type="text" name="city"/>
-                </div>
                 <div class="client_email_wrap">
                     <div>
                         <div class="input_label_wrap">
@@ -257,7 +300,7 @@ $clients = $manager->getClient();
                             <input class="client_contact_input" id="edit_other2" type="text" name="other2"/>
                         </div>
                         <div class="input_label_wrap">
-                            <label class="label_top">Email</label>
+                            <label class="label_top" for="edit_email4">Email</label>
                             <input type="checkbox" id="edit_valideEmail4" unchecked="true"/>
                             <input id="edit_email4" type="text" name="email4"/>
                         </div>
