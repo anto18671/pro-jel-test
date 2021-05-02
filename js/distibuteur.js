@@ -35,7 +35,7 @@ $(function() {
         var id = $(this).data("id");
 
         $("#edit_name").val(distributors[id].Name);
-        $("#edit_phone").val(distributors[id].Phone);
+        $("#edit_phone").val(distributors[id].Telephone1);
         $("#edit_address").val(distributors[id].Address);
         $("#edit_contact").val(distributors[id].Contact);
         $("#edit_distributor_id").val(id);

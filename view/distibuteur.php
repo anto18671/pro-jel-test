@@ -45,7 +45,7 @@ $distributors = $manager->getDistributor();
                 <?php foreach($distributors as $distributor){?>
                     <tr class="front">
                         <td><?php echo $distributor->Name ?></td>
-                        <td><?php echo $distributor->Phone ?></td>
+                        <td><?php echo $distributor->Telephone1 ?></td>
                         <td><?php echo $distributor->Address ?></td>
                         <td><?php echo $distributor->Contact ?></td>
                         <td style="width: 60px"><label class="edit_distributor_popup_open table_button" data-id="<?php echo $distributor->Id ?>">Éditer</label></td>
@@ -63,25 +63,52 @@ $distributors = $manager->getDistributor();
             <div class="padding"></div>
 
             <form method="POST" action="../action/HomeController.php" id="add_distributor_form">
-                <div class="input_label_wrap">
-                    <label class="label_top" for="add_name">Nom</label>
-                    <input id="add_name" type="text" name="name"/>
+                <div class="client_email_wrap">
+                    <div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_noDistributeur">No. Distributeur</label>
+                            <input id="add_noDistributeur" type="text" name="noDistributeur"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_name">Nom</label>
+                            <input id="add_name" type="text" name="name"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_telephone1">Téléphone1</label>
+                            <input id="add_telephone1" type="text" name="telephone1"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_telephone2">Téléphone2</label>
+                            <input id="add_telephone2" type="text" name="telephone2"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_contact">Contact</label>
+                            <input id="add_contact" type="text" name="contact"/>
+                        </div>
+                    </div>
+                    <div style="padding-left: 16px">
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_address">Adresse</label>
+                            <input id="add_address" type="text" name="address"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_ville">Ville</label>
+                            <input id="add_ville" type="text" name="ville"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_province">Province</label>
+                            <input id="add_province" type="text" name="province"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_codePostal">Code Postal</label>
+                            <input id="add_codePostal" type="text" name="codePostal"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_pays">Pays</label>
+                            <input id="add_pays" type="text" name="pays"/>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="input_label_wrap">
-                    <label class="label_top" for="add_phone">Téléphone</label>
-                    <input id="add_phone" type="text" name="phone"/>
-                </div>
-
-                <div class="input_label_wrap">
-                    <label class="label_top" for="add_address">Adresse</label>
-                    <input id="add_address" type="text" name="address"/>
-                </div>
-                <div class="input_label_wrap">
-                    <label class="label_top" for="add_contact">Contact</label>
-                    <input id="add_contact" type="text" name="contact"/>
-                </div>
-                
                 <input type="hidden" name="task" value="add_distributor"/>
             </form>
             
@@ -101,26 +128,52 @@ $distributors = $manager->getDistributor();
             <div class="padding"></div>
 
             <form method="POST" action="../action/HomeController.php" id="edit_distributor_form">
-                <div class="input_label_wrap">
-                    <label class="label_top" for="edit_name">Nom</label>
-                    <input id="edit_name" type="text" name="name"/>
+                <div class="client_email_wrap">
+                    <div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_noDistributeur">No. Distributeur</label>
+                            <input id="edit_noDistributeur" type="text" name="noDistributeur"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_name">Nom</label>
+                            <input id="edit_name" type="text" name="name"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_telephone1">Téléphone1</label>
+                            <input id="edit_telephone1" type="text" name="telephone1"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_telephone2">Téléphone2</label>
+                            <input id="edit_telephone2" type="text" name="telephone2"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_contact">Contact</label>
+                            <input id="edit_contact" type="text" name="contact"/>
+                        </div>
+                    </div>
+                    <div style="padding-left: 16px">
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_address">Adresse</label>
+                            <input id="edit_address" type="text" name="address"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_ville">Ville</label>
+                            <input id="edit_ville" type="text" name="ville"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_province">Province</label>
+                            <input id="edit_province" type="text" name="province"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_codePostal">Code Postal</label>
+                            <input id="edit_codePostal" type="text" name="codePostal"/>
+                        </div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_pays">Pays</label>
+                            <input id="edit_pays" type="text" name="pays"/>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="input_label_wrap">
-                    <label class="label_top" for="edit_phone">Téléphone</label>
-                    <input id="edit_phone" type="text" name="phone"/>
-                </div>
-
-                <div class="input_label_wrap">
-                    <label class="label_top" for="edit_address">Adresse</label>
-                    <input id="edit_address" type="text" name="address"/>
-                </div>
-                
-                <div class="input_label_wrap">
-                    <label class="label_top" for="edit_contact">Contact</label>
-                    <input id="edit_contact" type="text" name="contact"/>
-                </div>
-                
                 <input type="hidden" name="id" id="edit_distributor_id"/>
                 <input type="hidden" name="task" value="edit_distributor"/>
             </form>

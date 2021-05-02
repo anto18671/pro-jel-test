@@ -193,10 +193,17 @@ class HomeManager
 				$distributor = new Distributor();
 				$distributor->Id = $row['Id'];
                 $distributor->Name = $row['Name'];
-                $distributor->Phone = $row['Telephone1'];
+                $distributor->Telephone1 = $row['Telephone1'];
+                $distributor->Telephone2 = $row['Telephone2'];
                 $distributor->Address = $row['Address'];
                 $distributor->Contact = $row['Contact'];
                 $distributor->UpdateDate = $row['UpdateDate'];
+                
+                $distributor->Ville = $row['Ville'];
+                $distributor->Province = $row['Province'];
+                $distributor->CodePostal = $row['CodePostal'];
+                $distributor->Pays = $row['Pays'];
+                $distributor->noDistributeur = $row['noDistributeur'];
                 
                 $distributors[$distributor->Id] = $distributor;
             }
@@ -361,10 +368,16 @@ class Materiel {
 class Distributor {
     public $Id;
 	public $Name;
-    public $Phone;
+    public $Telephone1;
+    public $Telephone2;
     public $Address;
     public $Contact;
     public $UpdateDate;
+    public $Ville;
+    public $Province;
+    public $CodePostal;
+    public $Pays;
+    public $noDistributeur;
 }
 
 class Client {
