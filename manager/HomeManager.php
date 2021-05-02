@@ -42,15 +42,15 @@ class HomeManager
 		$result->execute (array($id));
     }
     
-    function AddDistributor($name, $phone, $address, $contact)
+    function AddDistributor($name, $telephone1, $telephone2, $address, $contact, $ville, $province, $codePostal, $pays, $noDistributeur)
     {
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
         $date = self::GetDate();
 
-        $sql = "INSERT INTO distributor VALUES (null,?,?,?,?,?,0)";
+        $sql = "INSERT INTO distributor VALUES (null,?,?,?,?,?,?,0,?,?,?,?,?)";
 		$result = $conn->prepare ($sql);
-		$result->execute (array($name, $phone, $address, $contact, $date));
+		$result->execute (array($name, $telephone1, $telephone2, $address, $contact, $date, $ville, $province, $codePostal, $pays, $noDistributeur));
     }
     
     function EditDistributor($id, $name, $phone, $address, $contact)
@@ -84,14 +84,14 @@ class HomeManager
 		$result->execute (array($name, $address, $city, $contact, $contactPay, $other1, $other2, $email1, $email2, $email3, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2));
     }
     
-    function EditClient($id, $name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4)
+    function EditClient($id, $name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2)
     {
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
         
-        $sql = "UPDATE client SET Name = ?, Address = ?, City = ?, Contact = ?, Email1 = ?, ContactPay = ?, Email2 = ?, Other1 = ?, Email3 = ?, Other2 = ?, Email4 = ?, ValideEmail1 = ?, ValideEmail2 = ?, ValideEmail3 = ?, ValideEmail4 = ? WHERE Id = ?";
+        $sql = "UPDATE client SET Name = ?, Address = ?, City = ?, Contact = ?, Email1 = ?, ContactPay = ?, Email2 = ?, Other1 = ?, Email3 = ?, Other2 = ?, Email4 = ?, ValideEmail1 = ?, ValideEmail2 = ?, ValideEmail3 = ?, ValideEmail4 = ?, noClient = ?, Province = ?, CodePostal = ?, Pays = ?, Telephone1 = ?, Telephone2 = ? WHERE Id = ?";
 		$result = $conn->prepare ($sql);
-		$result->execute (array($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $id));
+		$result->execute (array($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2, $id));
     }
     
     function DeleteClient($id)
@@ -110,10 +110,11 @@ class HomeManager
             $connManager = new ConnectionManager ();
             $conn = $connManager->ConnectToDb ();
             $date = self::GetDate();
+            $hashUsername = hash('sha256', $username);
 
-            $sql = "INSERT INTO usertablebigname VALUES (null,?,?,?,?,?,?,0)";
+            $sql = "INSERT INTO usertablebigname VALUES (null,?,?,?,?,?,?,?,0)";
             $result = $conn->prepare ($sql);
-            $result->execute (array($username, $password, $email, $date, $date, $isAdmin));
+            $result->execute (array($username, $hashUsername, $password, $email, $date, $date, $isAdmin));
         }
     }
     
@@ -122,10 +123,11 @@ class HomeManager
         if ($_SESSION['IsAdmin'] == 1) {
             $connManager = new ConnectionManager ();
             $conn = $connManager->ConnectToDb ();
+            $hashUsername = hash('sha256', $username);
 
-            $sql = "UPDATE usertablebigname SET UserName = ?, IsAdmin = ? WHERE Id = ?";
+            $sql = "UPDATE usertablebigname SET UserName = ?, UserNameSha = ?, IsAdmin = ? WHERE Id = ?";
             $result = $conn->prepare ($sql);
-            $result->execute (array($username, $isAdmin, $id));
+            $result->execute (array($username, $hashUsername, $isAdmin, $id));
         }
     }
     
@@ -191,7 +193,7 @@ class HomeManager
 				$distributor = new Distributor();
 				$distributor->Id = $row['Id'];
                 $distributor->Name = $row['Name'];
-                $distributor->Phone = $row['Phone'];
+                $distributor->Phone = $row['Telephone1'];
                 $distributor->Address = $row['Address'];
                 $distributor->Contact = $row['Contact'];
                 $distributor->UpdateDate = $row['UpdateDate'];
@@ -270,44 +272,73 @@ class HomeManager
         return $users;
     }
     
-    function ImportCsv($list)
+    function ImportCsv($list, $telephones)
     {
         $size = sizeof($list);
         $container = array();
         
         for($i = 0; $i < $size; $i++){
             $ligne = array();
-            array_push($ligne, $list[$i+0][0]);
-            array_push($ligne, $list[$i+1][0]);
-            array_push($ligne, $list[$i+2][0]);
-            array_push($ligne, $list[$i+3][0]);
-            array_push($ligne, $list[$i+4][0]);
+            array_push($ligne, $list[$i+0]);
+            array_push($ligne, $list[$i+1]);
+            array_push($ligne, $list[$i+2]);
+            array_push($ligne, $list[$i+3]);
+            array_push($ligne, $list[$i+4]);
             
-            if($list[$i+1][1])
-            {
-                array_push($ligne, $list[$i+1][1]);
-            }
-            else
-            {
-                array_push($ligne, "");
-            }
-            if($list[$i+1][2])
-            {
-                array_push($ligne, $list[$i+1][2]);
-            }
-            else
-            {
-                array_push($ligne, "");
-            }
+            array_push($container, $ligne);
             
             $i = $i + 5;
         }
         
         foreach($container as $c){
             $bundle = preg_split ("/\,/", $c[3]); 
-            self::AddClient($c[1], $c[2], $bundle[0], "", "", "", "", "", "", "", "", 0, 0, 0, 0, $c[0], $bundle[1], $bundle[2], $c[4], $c[5], $c[6]);
+            self::AddDistributor($c[1], "", "", $c[2], "", $bundle[0], $bundle[1], $bundle[2], $c[4], $c[0]);
+        }
+        
+        $connManager = new ConnectionManager ();
+        $conn = $connManager->ConnectToDb ();
+
+        $sql = "UPDATE distributor SET Telephone1 = ?, Telephone2 = ? WHERE Name = ?";
+        $result = $conn->prepare ($sql);
+        
+        foreach($telephones as $tel){
+            $result->execute (array($tel[1], $tel[2], $tel[0]));
         }
     }
+    
+//    function ImportCsv($list, $telephones)
+//    {
+//        $size = sizeof($list);
+//        $container = array();
+//        
+//        for($i = 0; $i < $size; $i++){
+//            $ligne = array();
+//            array_push($ligne, $list[$i+0]);
+//            array_push($ligne, $list[$i+1]);
+//            array_push($ligne, $list[$i+2]);
+//            array_push($ligne, $list[$i+3]);
+//            array_push($ligne, $list[$i+4]);
+//            
+//            array_push($container, $ligne);
+//            
+//            $i = $i + 5;
+//        }
+//        
+//        foreach($container as $c){
+//            $bundle = preg_split ("/\,/", $c[3]); 
+//            self::AddClient($c[1], $c[2], $bundle[0], "", "", "", "", "", "", "", "", 0, 0, 0, 0, $c[0], $bundle[1], $bundle[2], $c[4], "", "");
+//        }
+//        
+//        $connManager = new ConnectionManager ();
+//        $conn = $connManager->ConnectToDb ();
+//
+//        $sql = "UPDATE client SET Telephone1 = ?, Telephone2 = ? WHERE Name = ?";
+//        $result = $conn->prepare ($sql);
+//        
+//        foreach($telephones as $tel){
+//            $result->execute (array($tel[1], $tel[2], $tel[0]));
+//        }
+//    }
 }
 
 class Materiel {

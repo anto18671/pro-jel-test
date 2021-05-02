@@ -17,7 +17,7 @@ $(function() {
         }
 
         if(canSubmit){
-            $("#username_output").val(username);
+            $("#username_output").val(sha256(username));
             $("#password_output").val(sha256(password));
             $("#login_submit_form").submit();
         }

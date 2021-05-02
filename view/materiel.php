@@ -23,7 +23,7 @@ $distributors = $manager->getDistributor();
 <script src="../js/datatable.js" type="text/javascript"></script>
 
 <body class="body_wrap">
-    <div class="box_wrap">
+<!--    <div class="box_wrap">
         <form action="../action/HomeController.php" class="form-horizontal" method="post" name="frmCSVImport" id="frmCSVImport" enctype="multipart/form-data">
             <div class="input-row">
                 <label class="col-md-4 control-label">Choose CSV
@@ -35,7 +35,7 @@ $distributors = $manager->getDistributor();
                 <br />
             </div>
         </form>
-    </div>
+    </div>-->
     <div class="box_wrap">
         
         <div class="padding"></div>

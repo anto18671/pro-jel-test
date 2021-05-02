@@ -16,17 +16,25 @@ $(function() {
     $('#add_close_popup').click(function(){
         $('#add_client_popup_wrap').popup('hide');
         
-        $("#add__name").val("");
-        $("#add__address").val("");
-        $("#add__city").val("");
-        $("#add__contact").val("");
-        $("#add__email1").val("");
-        $("#add__contactPay").val("");
-        $("#add__email2").val("");
-        $("#add__other1").val("");
-        $("#add__email3").val("");
-        $("#add__other2").val("");
-        $("#add__email4").val("");
+        $("#add_name").val("");
+        $("#add_address").val("");
+        $("#add_city").val("");
+        $("#add_contact").val("");
+        $("#add_email1").val("");
+        $("#add_contactPay").val("");
+        $("#add_email2").val("");
+        $("#add_other1").val("");
+        $("#add_email3").val("");
+        $("#add_other2").val("");
+        $("#add_email4").val("");
+        
+        $("#add_noClient").val("");
+        $("#add_telephone1").val("");
+        $("#add_telephone2").val("");
+        $("#add_province").val("");
+        $("#add_codePostal").val("");
+        $("#add_pays").val("");
+        
         $("#add_valideEmail1").prop("unchecked", true);
         $("#add_valideEmail2").prop("unchecked", true);
         $("#add_valideEmail3").prop("unchecked", true);
@@ -35,17 +43,17 @@ $(function() {
     $('#add_cancel_popup').click(function(){
         $('#add_client_popup_wrap').popup('hide');
         
-        $("#add__name").val("");
-        $("#add__address").val("");
-        $("#add__city").val("");
-        $("#add__contact").val("");
-        $("#add__email1").val("");
-        $("#add__contactPay").val("");
-        $("#add__email2").val("");
-        $("#add__other1").val("");
-        $("#add__email3").val("");
-        $("#add__other2").val("");
-        $("#add__email4").val("");
+        $("#add_name").val("");
+        $("#add_address").val("");
+        $("#add_city").val("");
+        $("#add_contact").val("");
+        $("#add_email1").val("");
+        $("#add_contactPay").val("");
+        $("#add_email2").val("");
+        $("#add_other1").val("");
+        $("#add_email3").val("");
+        $("#add_other2").val("");
+        $("#add_email4").val("");
         $("#add_valideEmail1").prop("unchecked", true);
         $("#add_valideEmail2").prop("unchecked", true);
         $("#add_valideEmail3").prop("unchecked", true);

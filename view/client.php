@@ -69,20 +69,64 @@ $clients = $manager->getClient();
             <div class="padding"></div>
 
             <form method="POST" action="../action/HomeController.php" id="add_client_form">
-                <div class="input_label_wrap">
-                    <label class="label_top" for="add_name">Nom</label>
-                    <input id="add_name" type="text" name="name"/>
+                
+                <div class="client_email_wrap">
+                    <div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_name">Nom</label>
+                            <input id="add_name" type="text" name="name"/>
+                        </div>
+
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_address">Adresse</label>
+                            <input id="add_address" type="text" name="address"/>
+                        </div>
+
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_city">Ville</label>
+                            <input id="add_city" type="text" name="city"/>
+                        </div>
+                    </div>
+                    <div style="padding-left: 16px">
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_noClient">No. Client</label>
+                            <input id="add_noClient" type="text" name="noClient"/>
+                        </div>
+
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_telephone1">Téléphone1</label>
+                            <input id="add_telephone1" type="text" name="telephone1"/>
+                        </div>
+
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_telephone2">Téléphone2</label>
+                            <input id="add_telephone2" type="text" name="telephone2"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="client_email_wrap">
+                    <div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_province">Province</label>
+                            <input id="add_province" type="text" name="province"/>
+                        </div>
+                    </div>
+                    <div style="padding-left: 16px">
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_codePostal">Code Postal</label>
+                            <input id="add_codePostal" type="text" name="codePostal"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="client_email_wrap">
+                    <div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_pays">Pays</label>
+                            <input id="add_pays" type="text" name="pays"/>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="input_label_wrap">
-                    <label class="label_top" for="add_address">Adresse</label>
-                    <input id="add_address" type="text" name="address"/>
-                </div>
-                
-                <div class="input_label_wrap">
-                    <label class="label_top" for="add_city">Ville</label>
-                    <input id="add_city" type="text" name="city"/>
-                </div>
                 <div class="client_email_wrap">
                     <div>
                         <div class="input_label_wrap">
