@@ -127,6 +127,8 @@ ul {
 .flex_split{
     display: flex;
     justify-content: space-between;
+    padding-top: 18px;
+    padding-bottom: 18px;
 }
 
 .button_box{
@@ -134,6 +136,22 @@ ul {
     flex-direction: row;
     justify-content: flex-start;
     padding-bottom: 18px;
+}
+
+.border_wrap{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    background-color: #e6e6e6;
+    border-radius: 5px;
+    padding: 10px 35px 20px 35px;
+}
+
+.input_label_wrapper{
+    padding-bottom: 15px;
+	width: 175px;
 }
 
 /*--------------- Utility End --------------*/
@@ -255,3 +273,54 @@ ul {
 }
 
 /*------------- Login End  -----------*/
+
+.task_box{
+    width: 100%;
+    height: 90px;
+    resize: none;
+}
+
+.task_wrap_header{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.task_title{
+    font-size: 16px;
+    height: 30px;
+}
+
+.close_task_popup{
+	margin-left: 10px;
+    font-size: 16px;
+}
+
+.task_wrap,
+.task_material_wrap{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    background-color: #e6e6e6;
+    border-radius: 5px;
+    padding: 10px 35px 20px 35px;
+}
+
+.facture_material_box{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 10px 35px 20px 35px;
+}
+
+.arrow_size{
+    width: 18px;
+    height: 18px;
+    
+}

@@ -22,6 +22,7 @@
             <a href="../view/materiel.php" class="nav_button">Matériel</a>
             <a href="../view/distibuteur.php" class="nav_button">Distributeur</a>
             <a href="../view/client.php" class="nav_button">Client</a>
+            <a href="../view/facture.php" class="nav_button">Facture</a>
             <?php if ($isAdmin){ ?>
                 <a href="../view/utilisateur.php" class="nav_button">Utilisateur</a>
             <?php } ?>
@@ -49,6 +50,9 @@
         }
         else if (strpos($actual_link, 'login.php') !== false) {
 	        echo '<script src="../js/login.js'.$version.'"></script>';
+        }
+        else if (strpos($actual_link, 'facture.php') !== false) {
+	        echo '<script src="../js/facture.js'.$version.'"></script>';
         }
     ?>
 </head>

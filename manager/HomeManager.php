@@ -176,6 +176,31 @@ class HomeManager
         return $materiels;
     }
     
+    function getMateriel2()
+    {
+		$connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+		
+		$sql = "SELECT * from materiel WHERE isArchived = 0";
+		$result = $conn->prepare($sql);
+		$result->execute();
+
+		$materiels = Array();
+		if ($result != null)
+		{
+			while ($row = $result->fetch (PDO::FETCH_ASSOC))
+			{
+				$materiel = new Materiel();
+				$materiel->Id = $row['Id'];
+                $materiel->Description = $row['Description'];
+                
+                array_push($materiels, $materiel);
+            }
+        }
+        
+        return $materiels;
+    }
+    
     function getDistributor()
     {
 		$connManager = new ConnectionManager ();
@@ -217,7 +242,7 @@ class HomeManager
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
 		
-		$sql = "SELECT * from client WHERE isArchived = 0";
+		$sql = "SELECT * from client WHERE isArchived = 0 ORDER BY Name ASC";
 		$result = $conn->prepare($sql);
 		$result->execute();
 

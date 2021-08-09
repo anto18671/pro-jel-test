@@ -23,12 +23,10 @@ $clients = $manager->getClient();
 <body class="body_wrap">
     <div class="box_wrap">
         
-        <div class="padding"></div>
         <div class="flex_split">
             <h1 class="font20" style="width:100px; display: inline;">Client</h1>
             <label id="add_client_popup_open" class="submit_button right">Ajouter</label>
         </div>
-        <div class="padding"></div>
         
         <table id="client_datatable" class="display cell-border" style="width:100%">
             <thead>
