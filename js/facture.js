@@ -1,14 +1,14 @@
 $(function() {
     $('#add_text').click(function(){
-        addText("");
+        addText("", 0);
     });
     
     $('#add_time').click(function(){
-        addTime(1, 0);
+        addTime(1, 0, 0);
     });
     
     $('#add_space').click(function(){
-        addSpace();
+        addSpace(0);
     });
     
     $('#add_materiel').click(function(){
@@ -54,10 +54,10 @@ $(function() {
         $(this).closest('.task_material_wrap').remove();
     });
     
-    function addSpace(){
+    function addSpace(pos){
         var html = '';
 
-        html += '<div class="task_wrap" data-type="space">';
+        html += '<div class="task_wrap" data-type="space" data-pos="' + pos + '">';
         html += '<p class="task_title">Espace</p>';
         html += '<label class="close_task_popup">X</label>';
         html += '<img class="arrow_size" src="../images/227604_down_arrow_icon.png">';
@@ -67,10 +67,10 @@ $(function() {
         $('.all_task_wrap').append(html);
     }
     
-    function addText(text){
+    function addText(text, pos){
         var html = '';
 
-        html += '<div class="task_wrap" data-type="text">';
+        html += '<div class="task_wrap" data-type="text" data-pos="' + pos + '">';
         html += '<div class="task_wrap_header">';
         html += '<p class="task_title">Texte</p>';
         html += '<label class="close_task_popup">X</label>';
@@ -86,10 +86,10 @@ $(function() {
         $('.all_task_wrap').append(html);
     }
     
-    function addTime(type, nb){
+    function addTime(type, nb, pos){
         var html = '';
 
-        html += '<div class="task_wrap" data-type="time">';
+        html += '<div class="task_wrap" data-type="time" data-pos="' + pos + '">';
         html += '<div class="task_wrap_header">';
         html += '<p class="task_title">Temps</p>';
         html += '<label class="close_task_popup">X</label>';
