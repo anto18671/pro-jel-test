@@ -68,7 +68,7 @@ $distributors = $manager->getDistributor();
                             <input id="add_noDistributeur" type="text" name="noDistributeur"/>
                         </div>
                         <div class="input_label_wrap">
-                            <label class="label_top" for="add_name">Nom</label>
+                            <label class="label_top" for="add_name">Nom du distributeur</label>
                             <input id="add_name" type="text" name="name"/>
                         </div>
                         <div class="input_label_wrap">
@@ -111,7 +111,7 @@ $distributors = $manager->getDistributor();
             </form>
             
             <div class="button_box">
-                <label id="add_distributor_submit" class="submit_button">Ajouter</label>
+                <label id="add_distributor_submit" class="submit_button">Sauvegarder</label>
                 <label id="add_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
             </div>
 
@@ -133,7 +133,7 @@ $distributors = $manager->getDistributor();
                             <input id="edit_noDistributeur" type="text" name="noDistributeur"/>
                         </div>
                         <div class="input_label_wrap">
-                            <label class="label_top" for="edit_name">Nom</label>
+                            <label class="label_top" for="edit_name">Nom du distributeur</label>
                             <input id="edit_name" type="text" name="name"/>
                         </div>
                         <div class="input_label_wrap">
@@ -177,7 +177,7 @@ $distributors = $manager->getDistributor();
             </form>
             
             <div class="button_box">
-                <label id="edit_distributor_submit" class="submit_button">Éditer</label>
+                <label id="edit_distributor_submit" class="submit_button">Sauvegarder</label>
                 <label id="edit_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
             </div>
 

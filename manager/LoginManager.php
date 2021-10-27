@@ -4,6 +4,12 @@ require_once ($dir . '/ConnectionManager.php');
 
 class LoginManager
 {
+    function GetDate()
+	{
+		date_default_timezone_set ('America/Montreal');
+		return date_create ()->format ('Y-m-d');
+	}
+    
     function Login($hashUsername, $password)
     {
         $connManager = new ConnectionManager ();
@@ -23,7 +29,10 @@ class LoginManager
                 $_SESSION ['Id'] = $row ['Id'];
                 $_SESSION ['UserName'] = $row ['UserName'];
                 $_SESSION ['Email'] = $row ['Email'];
-                $_SESSION ['IsAdmin'] = $row['IsAdmin'];            
+                $_SESSION ['IsAdmin'] = $row['IsAdmin'];
+                self::setLastConnect($_SESSION ['Id']);
+                
+                
 
                 echo "<script> window.location.replace('../view/materiel.php') </script>";
             }
@@ -39,6 +48,16 @@ class LoginManager
             echo "<script> alert('Wrong informations. Try again.') </script>";
             echo "<script> window.location.replace('../view/login.php') </script>";
         }
+    }
+    
+    function setLastConnect($id){
+        $connManager = new ConnectionManager ();
+        $conn = $connManager->ConnectToDb ();
+        $date = self::getDate();
+
+        $sql = "UPDATE usertablebigname SET LastConnect = ? WHERE Id = ?";
+        $result = $conn->prepare ($sql);
+        $result->execute (array($date, $id));
     }
 }
 ?>

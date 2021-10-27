@@ -28,6 +28,13 @@ $(function() {
         $("#add_phone").val("");
         $("#add_address").val("");
         $("#add_contact").val("");
+        $("#add_noDistributeur").val("");
+        $("#add_telephone1").val("");
+        $("#add_telephone2").val("");
+        $("#add_ville").val("");
+        $("#add_province").val("");
+        $("#add_codePostal").val("");
+        $("#add_pays").val("");
 	});
     
     $('#edit_distributor_popup_wrap').popup();
@@ -39,6 +46,13 @@ $(function() {
         $("#edit_address").val(distributors[id].Address);
         $("#edit_contact").val(distributors[id].Contact);
         $("#edit_distributor_id").val(id);
+        $("#edit_noDistributeur").val(distributors[id].noDistributeur);
+        $("#edit_telephone1").val(distributors[id].Telephone1);
+        $("#edit_telephone2").val(distributors[id].Telephone2);
+        $("#edit_ville").val(distributors[id].Ville);
+        $("#edit_province").val(distributors[id].Province);
+        $("#edit_codePostal").val(distributors[id].CodePostal);
+        $("#edit_pays").val(distributors[id].Pays);
         
         $('#edit_distributor_popup_wrap').popup('show');
 	});
@@ -66,7 +80,7 @@ $(function() {
     $("#add_distributor_submit").click(function(){
         var canSubmit = true;
         var name = $("#add_name").val();
-        var phone = $("#add_phone").val();
+        var phone = $("#add_telephone1").val();
         var address = $("#add_address").val();
         var contact = $("#add_contact").val();
 
@@ -77,7 +91,7 @@ $(function() {
             canSubmit = false;
         }
         if(!phone){
-            $("#add_phone").addClass("boder_red");
+            $("#add_telephone1").addClass("boder_red");
             canSubmit = false;
         }
         if(!address){
@@ -97,7 +111,7 @@ $(function() {
     $("#edit_distributor_submit").click(function(){
         var canSubmit = true;
         var name = $("#edit_name").val();
-        var phone = $("#edit_phone").val();
+        var phone = $("#edit_telephone1").val();
         var address = $("#edit_address").val();
         var contact = $("#edit_contact").val();
 
@@ -108,7 +122,7 @@ $(function() {
             canSubmit = false;
         }
         if(!phone){
-            $("#edit_phone").addClass("boder_red");
+            $("#edit_telephone1").addClass("boder_red");
             canSubmit = false;
         }
         if(!address){

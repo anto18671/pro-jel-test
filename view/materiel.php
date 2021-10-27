@@ -115,7 +115,7 @@ $distributors = $manager->getDistributor();
             </form>
             
             <div class="button_box">
-                <label id="add_materiel_submit" class="submit_button">Ajouter</label>
+                <label id="add_materiel_submit" class="submit_button">Sauvegarder</label>
                 <label id="add_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
             </div>
 
@@ -166,7 +166,7 @@ $distributors = $manager->getDistributor();
             </form>
 
             <div class="button_box">
-                <label id="edit_materiel_submit" class="submit_button">Éditer</label>
+                <label id="edit_materiel_submit" class="submit_button">Sauvegarder</label>
                 <label id="edit_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
             </div>
             

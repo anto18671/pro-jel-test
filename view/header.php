@@ -18,15 +18,18 @@
         <script src="../js/jquery-ui.js"></script>
         <script src="../js/jquery.popupoverlay.js"></script>
         
-        <div class="admin_nav_wrap">
-            <a href="../view/materiel.php" class="nav_button">Matériel</a>
-            <a href="../view/distibuteur.php" class="nav_button">Distributeur</a>
-            <a href="../view/client.php" class="nav_button">Client</a>
-            <a href="../view/facture.php" class="nav_button">Facture</a>
-            <?php if ($isAdmin){ ?>
-                <a href="../view/utilisateur.php" class="nav_button">Utilisateur</a>
-            <?php } ?>
-        </div>
+        <?php if (strpos($actual_link, 'facture_add.php') === false && strpos($actual_link, 'facture_edit.php') === false) { ?>
+            <div class="admin_nav_wrap">
+                <a href="../view/materiel.php" class="nav_button">Matériel</a>
+                <a href="../view/distibuteur.php" class="nav_button">Distributeur</a>
+                <a href="../view/client.php" class="nav_button">Client</a>
+                <a href="../view/facture.php" class="nav_button">Facture</a>
+                <?php if ($isAdmin){ ?>
+                    <a href="../view/utilisateur.php" class="nav_button">Utilisateur</a>
+                <?php } ?>
+                <a href="../action/Logout.php" class="nav_button">Déconnection</a>
+            </div>
+        <?php } ?>
 
     <?php } ?>
 
@@ -53,6 +56,12 @@
         }
         else if (strpos($actual_link, 'facture.php') !== false) {
 	        echo '<script src="../js/facture.js'.$version.'"></script>';
+        }
+        else if (strpos($actual_link, 'facture_add.php') !== false) {
+	        echo '<script src="../js/facture_add.js'.$version.'"></script>';
+        }
+        else if (strpos($actual_link, 'facture_edit.php') !== false) {
+	        echo '<script src="../js/facture_edit.js'.$version.'"></script>';
         }
     ?>
 </head>

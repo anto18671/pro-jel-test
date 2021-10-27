@@ -61,6 +61,7 @@ $(function() {
         $("#add_pays").val("");
         $("#add_telephone1").val("");
         $("#add_telephone2").val("");
+        $("#add_tauxHoraire").val("");
         
         $("#add_valideEmail1").prop("unchecked", true);
         $("#add_valideEmail2").prop("unchecked", true);
@@ -90,6 +91,7 @@ $(function() {
         $("#edit_pays").val(clients[id].Pays);
         $("#edit_telephone1").val(clients[id].Telephone1);
         $("#edit_telephone2").val(clients[id].Telephone2);
+        $("#edit_tauxHoraire").val(clients[id].TauxHoraire);
         
         $("#edit_valideEmail1").prop("checked", clients[id].ValideEmail1);
         $("#edit_valideEmail2").prop("checked", clients[id].ValideEmail2);

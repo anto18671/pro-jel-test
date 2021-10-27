@@ -84,7 +84,7 @@ $users = $manager->getUser();
             </form>
             
             <div class="button_box">
-                <label id="add_user_submit" class="submit_button">Ajouter</label>
+                <label id="add_user_submit" class="submit_button">Sauvegarder</label>
                 <label id="add_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
             </div>
 
@@ -118,7 +118,7 @@ $users = $manager->getUser();
             </form>
             
             <div class="button_box">
-                <label id="edit_user_submit" class="submit_button">Ajouter</label>
+                <label id="edit_user_submit" class="submit_button">Sauvegarder</label>
                 <label id="edit_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
             </div>
 

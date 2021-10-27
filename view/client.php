@@ -124,6 +124,12 @@ $clients = $manager->getClient();
                         </div>
                     </div>
                 </div>
+                    <div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="add_tauxHoraire">Taux horaire</label>
+                            <input id="add_tauxHoraire" type="text" name="tauxHoraire"/>
+                        </div>
+                    </div>
 
                 <div class="client_email_wrap">
                     <div>
@@ -183,7 +189,7 @@ $clients = $manager->getClient();
             </form>
             
             <div class="button_box">
-                <label id="add_client_submit" class="submit_button">Ajouter</label>
+                <label id="add_client_submit" class="submit_button">Sauvegarder</label>
                 <label id="add_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
             </div>
 
@@ -254,6 +260,14 @@ $clients = $manager->getClient();
                         </div>
                     </div>
                 </div>
+                <div class="client_email_wrap">
+                    <div>
+                        <div class="input_label_wrap">
+                            <label class="label_top" for="edit_tauxHoraire">Taux horaire</label>
+                            <input id="edit_tauxHoraire" type="text" name="tauxHoraire"/>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="client_email_wrap">
                     <div>
@@ -314,7 +328,7 @@ $clients = $manager->getClient();
             </form>
             
             <div class="button_box">
-                <label id="edit_client_submit" class="submit_button">Éditer</label>
+                <label id="edit_client_submit" class="submit_button">Sauvegarder</label>
                 <label id="edit_cancel_popup" class="submit_button" style="margin-left: 10px;">Annuler</label>
             </div>
 

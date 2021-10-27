@@ -42,8 +42,11 @@ if (isset ($_POST ['task']) && !empty($_SESSION['UserName']))
         case 'edit_user' :
 			EditUser ();
 			break;
-         case 'delete_user' :
+        case 'delete_user' :
 			DeleteUser ();
+			break;
+        case 'save_facture' :
+			SaveFacture ();
 			break;
 	}
 }
@@ -115,15 +118,20 @@ function DeleteMateriel()
 
 function AddDistributor()
 {
-	if (isset($_POST ['name']) && isset($_POST ['phone']) && isset($_POST ['address']) && isset($_POST ['contact'])) {
+	if (isset($_POST ['name']) && isset($_POST ['telephone1']) && isset($_POST ['address']) && isset($_POST ['contact'])) {
         $name = strip_tags ($_POST ['name']);
-		$phone = strip_tags ($_POST ['phone']);
+		$telephone1 = strip_tags ($_POST ['telephone1']);
+        $telephone2 = strip_tags ($_POST ['telephone2']);
 		$address = strip_tags ($_POST ['address']);
         $contact = strip_tags ($_POST ['contact']);
-
+        $ville = strip_tags ($_POST ['ville']);
+        $province = strip_tags ($_POST ['province']);  
+        $pays = strip_tags ($_POST ['pays']);
+        $noDistributeur = strip_tags ($_POST ['noDistributeur']);
+        $codePostal = $_POST ['codePostal'];        
 		require_once ("../manager/HomeManager.php");
 		$manager = new HomeManager ();
-		$manager->AddDistributor($name, $phone, $address, $contact);
+		$manager->AddDistributor($name, $telephone1, $telephone2, $address, $contact, $ville, $province, $codePostal, $pays, $noDistributeur);
 	}
     
     echo "<script> window.location.replace('../view/distibuteur.php') </script>";
@@ -131,16 +139,22 @@ function AddDistributor()
 
 function EditDistributor()
 {
-	if (isset($_POST ['id']) && isset($_POST ['name']) && isset($_POST ['phone']) && isset($_POST ['address']) && isset($_POST ['contact'])) {
+	if (isset($_POST ['id']) && isset($_POST ['name']) && isset($_POST ['telephone1']) && isset($_POST ['address']) && isset($_POST ['contact'])) {
 		$id = strip_tags ($_POST ['id']);
         $name = strip_tags ($_POST ['name']);
-		$phone = strip_tags ($_POST ['phone']);
+		$telephone1 = strip_tags ($_POST ['telephone1']);
+        $telephone2 = strip_tags ($_POST ['telephone2']);
 		$address = strip_tags ($_POST ['address']);
         $contact = strip_tags ($_POST ['contact']);
+        $ville = strip_tags ($_POST ['ville']);
+        $province = strip_tags ($_POST ['province']);  
+        $pays = strip_tags ($_POST ['pays']);
+        $noDistributeur = strip_tags ($_POST ['noDistributeur']);
+        $codePostal = strip_tags ($_POST ['codePostal']);
         
 		require_once ("../manager/HomeManager.php");
 		$manager = new HomeManager ();
-		$manager->EditDistributor($id, $name, $phone, $address, $contact);
+		$manager->EditDistributor($id, $name, $telephone1, $telephone2, $address, $contact, $ville, $province, $codePostal, $pays, $noDistributeur);
 	}
     
     echo "<script> window.location.replace('../view/distibuteur.php') </script>";
@@ -180,6 +194,8 @@ function AddClient()
         $codePostal = $_POST ["codePostal"];
         $pays = $_POST ["pays"];
         
+        $tauxHoraire = $_POST ["tauxHoraire"];
+        
         $valideEmail1 = $_POST ["valide_email1"];
         $valideEmail2 = $_POST ["valide_email2"];
         
@@ -204,7 +220,7 @@ function AddClient()
 
 		require_once ("../manager/HomeManager.php");
 		$manager = new HomeManager ();
-		$manager->AddClient($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2);
+		$manager->AddClient($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2, $tauxHoraire);
 	}
     
     echo "<script> window.location.replace('../view/client.php') </script>";
@@ -231,6 +247,8 @@ function EditClient()
         $codePostal = $_POST ["codePostal"];
         $pays = $_POST ["pays"];
         
+        $tauxHoraire = $_POST ["tauxHoraire"];
+        
         $valideEmail1 = $_POST ["valide_email1"];
         $valideEmail2 = $_POST ["valide_email2"];
         
@@ -255,7 +273,7 @@ function EditClient()
         
 		require_once ("../manager/HomeManager.php");
 		$manager = new HomeManager ();
-		$manager->EditClient($id, $name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2);
+		$manager->EditClient($id, $name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2, $tauxHoraire);
 	}
 
     echo "<script> window.location.replace('../view/client.php') </script>";
@@ -324,6 +342,34 @@ function DeleteUser()
 	}
     
     echo "<script> window.location.replace('../view/utilisateur.php') </script>";
+}
+
+function SaveFacture()
+{
+	if (isset($_POST ['client'])) {
+		$client = $_POST ['client'];
+        $poClient = $_POST ['poClient'];
+        $conditionVente = $_POST ['conditionVente'];
+        $note1 = $_POST ['note1'];
+        $note2 = $_POST ['note2'];
+        $array = $_POST ['array'];
+        
+        $remarque = $_POST ['remarque'];
+        $remarquePrix = $_POST ['remarquePrix'];
+
+		require_once ("../manager/HomeManager.php");
+		$manager = new HomeManager ();
+        
+        if(isset($_POST ['factureId'])){
+            $id = $_POST ['factureId'];
+            $manager->EditFacture($id, $client, $poClient, $conditionVente, $note1, $note2, $array, $remarque, $remarquePrix);
+        }
+        else{
+            $manager->SaveFacture($client, $poClient, $conditionVente, $note1, $note2, $array, $remarque, $remarquePrix);
+        }
+	}
+    
+    echo "<script> window.location.replace('../view/facture.php') </script>";
 }
 
 function ImportCsv()

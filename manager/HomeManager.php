@@ -53,15 +53,15 @@ class HomeManager
 		$result->execute (array($name, $telephone1, $telephone2, $address, $contact, $date, $ville, $province, $codePostal, $pays, $noDistributeur));
     }
     
-    function EditDistributor($id, $name, $phone, $address, $contact)
+    function EditDistributor($id, $name, $telephone1, $telephone2, $address, $contact, $ville, $province, $codePostal, $pays, $noDistributeur)
     {
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
         $date = self::GetDate();
         
-        $sql = "UPDATE distributor SET Name = ?, Phone = ?, Address = ?, Contact = ?, UpdateDate = ? WHERE Id = ?";
+        $sql = "UPDATE distributor SET Name = ?, Telephone1 = ?, Telephone2 = ?, Address = ?, Contact = ?, UpdateDate = ?, Ville = ?, Province = ?, CodePostal = ?, Pays = ?, noDistributeur = ? WHERE Id = ?";
 		$result = $conn->prepare ($sql);
-		$result->execute (array($name, $phone, $address, $contact, $date, $id));
+		$result->execute (array($name, $telephone1, $telephone2, $address, $contact, $date, $ville, $province, $codePostal, $pays, $noDistributeur, $id));
     }
     
     function DeleteDistributor($id)
@@ -74,24 +74,24 @@ class HomeManager
 		$result->execute (array($id));
     }
     
-    function AddClient($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2)
+    function AddClient($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2, $tauxHoraire)
     {
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
 
-        $sql = "INSERT INTO client VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,?,?,?,?,?,?)";
+        $sql = "INSERT INTO client VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,?,?,?,?,?,?,?)";
 		$result = $conn->prepare ($sql);
-		$result->execute (array($name, $address, $city, $contact, $contactPay, $other1, $other2, $email1, $email2, $email3, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2));
+		$result->execute (array($name, $address, $city, $contact, $contactPay, $other1, $other2, $email1, $email2, $email3, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2, $tauxHoraire));
     }
     
-    function EditClient($id, $name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2)
+    function EditClient($id, $name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2, $tauxHoraire)
     {
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
         
-        $sql = "UPDATE client SET Name = ?, Address = ?, City = ?, Contact = ?, Email1 = ?, ContactPay = ?, Email2 = ?, Other1 = ?, Email3 = ?, Other2 = ?, Email4 = ?, ValideEmail1 = ?, ValideEmail2 = ?, ValideEmail3 = ?, ValideEmail4 = ?, noClient = ?, Province = ?, CodePostal = ?, Pays = ?, Telephone1 = ?, Telephone2 = ? WHERE Id = ?";
+        $sql = "UPDATE client SET Name = ?, Address = ?, City = ?, Contact = ?, Email1 = ?, ContactPay = ?, Email2 = ?, Other1 = ?, Email3 = ?, Other2 = ?, Email4 = ?, ValideEmail1 = ?, ValideEmail2 = ?, ValideEmail3 = ?, ValideEmail4 = ?, noClient = ?, Province = ?, CodePostal = ?, Pays = ?, Telephone1 = ?, Telephone2 = ?, TauxHoraire = ? WHERE Id = ?";
 		$result = $conn->prepare ($sql);
-		$result->execute (array($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2, $id));
+		$result->execute (array($name, $address, $city, $contact, $email1, $contactPay, $email2, $other1, $email3, $other2, $email4, $valideEmail1, $valideEmail2, $valideEmail3, $valideEmail4, $noClient, $province, $codePostal, $pays, $telephone1, $telephone2, $tauxHoraire, $id));
     }
     
     function DeleteClient($id)
@@ -148,9 +148,7 @@ class HomeManager
 		$connManager = new ConnectionManager ();
 		$conn = $connManager->ConnectToDb ();
 		
-		$sql = "SELECT m.*, d.Name from materiel m
-                INNER JOIN distributor d ON m.Distributor = d.Id
-                WHERE m.isArchived = 0";
+		$sql = "SELECT * FROM materiel WHERE isArchived = 0";
 		$result = $conn->prepare($sql);
 		$result->execute();
 
@@ -164,12 +162,22 @@ class HomeManager
                 $materiel->PieceNumber = $row['PieceNumber'];
                 $materiel->Description = $row['Description'];
                 $materiel->DistributorId = $row['Distributor'];
-                $materiel->DistributorName = $row['Name'];
                 $materiel->Cost = $row['Cost'];
                 $materiel->Fabricant = $row['Fabricant'];
                 $materiel->UpdateDate = $row['UpdateDate'];
                 
                 $materiels[$materiel->Id] = $materiel;
+            }
+        }
+        
+        $sql2 = "SELECT Name FROM distributor WHERE Id = ?";
+		$result2 = $conn->prepare($sql2);
+        
+        foreach ($materiels as $materiel){
+            $result2->execute(array($materiel->DistributorId));
+            if ($result2 != null){
+                $row = $result2->fetch (PDO::FETCH_ASSOC);
+                $materiel->DistributorName = $row['Name'];
             }
         }
         
@@ -274,6 +282,7 @@ class HomeManager
                 $client->Pays = $row['Pays'];
                 $client->Telephone1 = $row['Telephone1'];
                 $client->Telephone2 = $row['Telephone2'];
+                $client->TauxHoraire = $row['TauxHoraire'];
                 
                 $clients[$client->Id] = $client;
             }
@@ -308,6 +317,109 @@ class HomeManager
         }
         
         return $users;
+    }
+    
+    function getClientName($id){
+        $connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+		
+		$sql = "SELECT Name from client WHERE Id = ?";
+		$result = $conn->prepare($sql);
+		$result->execute(array($id));
+
+		if ($result != null)
+		{
+			while ($row = $result->fetch (PDO::FETCH_ASSOC))
+			{
+				return $row['Name'];
+            }
+        }
+        
+    }
+    
+    function getFacture(){
+        
+        
+        $connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+		
+		$sql = "SELECT * from facture";
+		$result = $conn->prepare($sql);
+		$result->execute();
+
+		$factures = Array();
+		if ($result != null)
+		{
+			while ($row = $result->fetch (PDO::FETCH_ASSOC))
+			{
+				$facture = new Facture();
+                $facture->Id = $row['Id'];
+				$facture->ClientId = $row['Client'];
+                $facture->ClientName = self::getClientName($row['Client']);
+                $facture->PO = $row['PO'];
+                $facture->ConditionVente = $row['ConditionVente'];
+                $facture->Note1 = $row['Note1'];
+                $facture->Note2 = $row['Note2'];
+                $facture->Array = json_decode($row['Array']);
+                $facture->Date = $row['Date'];
+                $facture->Remarque = $row['Remarque'];
+                $facture->RemarquePrix = $row['RemarquePrix'];
+                
+                $factures[$facture->Id] = $facture;
+            }
+        }
+        
+        return $factures;
+    }
+    
+    function getFactureById($id){
+        
+        $connManager = new ConnectionManager ();
+		$conn = $connManager->ConnectToDb ();
+		
+		$sql = "SELECT * from facture WHERE Id = ?";
+		$result = $conn->prepare($sql);
+		$result->execute(array($id));
+        $facture = new Facture();
+
+		if ($result != null)
+		{
+			$row = $result->fetch (PDO::FETCH_ASSOC);
+			
+            $facture->Id = $row['Id'];
+            $facture->ClientId = $row['Client'];
+            $facture->ClientName = self::getClientName($row['Client']);
+            $facture->PO = $row['PO'];
+            $facture->ConditionVente = $row['ConditionVente'];
+            $facture->Note1 = $row['Note1'];
+            $facture->Note2 = $row['Note2'];
+            $facture->Array = $row['Array'];
+            $facture->Date = $row['Date'];
+            $facture->Remarque = $row['Remarque'];
+            $facture->RemarquePrix = $row['RemarquePrix'];
+        }
+        
+        return $facture;
+    }
+    
+    function SaveFacture($client, $poClient, $conditionVente, $note1, $note2, $array, $remarque, $remarquePrix){
+        $connManager = new ConnectionManager ();
+        $conn = $connManager->ConnectToDb ();
+
+        $sql = "INSERT INTO facture VALUES (null,?,?,?,?,?,?,?,?,?)";
+        $result = $conn->prepare ($sql);
+        $result->execute (array($client, $poClient, $conditionVente, $note1, $note2, json_encode($array), self::GetDate(), $remarque, $remarquePrix));
+        
+    }
+    
+    function EditFacture($id, $client, $poClient, $conditionVente, $note1, $note2, $array, $remarque, $remarquePrix){
+        $connManager = new ConnectionManager ();
+        $conn = $connManager->ConnectToDb ();
+
+        $sql = "UPDATE facture SET Client = ?, PO = ?, ConditionVente = ?, Note1 = ?, Note2 = ?, Array = ?, Date = ?, Remarque = ?, RemarquePrix = ? WHERE Id = ?";
+        $result = $conn->prepare ($sql);
+        $result->execute (array($client, $poClient, $conditionVente, $note1, $note2, json_encode($array), self::GetDate(), $remarque, $remarquePrix, $id));
+        
     }
     
     function ImportCsv($list, $telephones)
@@ -428,6 +540,7 @@ class Client {
     public $Pays;
     public $Telephone1;
     public $Telephone2;
+    public $TauxHoraire;
     
 }
 
@@ -437,5 +550,19 @@ class User {
     public $Email;
     public $DateCreated;
     public $IsAdmin;
+}
+
+class Facture {
+    public $Id;
+    public $ClientId;
+    public $ClientName;
+    public $PO;
+    public $ConditionVente;
+    public $Note1;
+    public $Note2;
+    public $Array;
+    public $Date;
+    public $Remarque;
+    public $RemarquePrix;
 }
 ?>

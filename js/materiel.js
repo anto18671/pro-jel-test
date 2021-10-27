@@ -110,7 +110,7 @@ $(function() {
             $("#add_fabricant").addClass("boder_red");
             canSubmit = false;
         }
-        if(!costValide(cost)){
+        if(!cost){
             $("#add_cost").addClass("boder_red");
             canSubmit = false;
         }
@@ -146,7 +146,7 @@ $(function() {
             $("#edit_fabricant").addClass("boder_red");
             canSubmit = false;
         }
-        if(!costValide(cost)){
+        if(!cost){
             $("#edit_cost").addClass("boder_red");
             canSubmit = false;
         }
@@ -160,24 +160,4 @@ $(function() {
         $("#delete_materiel_form").submit();
     });
 
-    function costValide(costBefore)
-    {
-        var cost = costBefore.replace(",", ".");
-        var strArray = cost.split(".");
-
-        if(strArray.length == 2 && strArray[1].length != 2){
-            return false;
-        }
-
-        var iniSize = cost.length;
-        var float = parseFloat(cost);
-        var str = float.toString();
-        var endSize = str.length;
-
-        if(iniSize == endSize){
-            return true;
-        }
-
-        return false;
-    }
 });
