@@ -35,7 +35,7 @@ $(function() {
 	});
     
     $('#edit_user_popup_wrap').popup();
-	$('.edit_user_popup_open').click(function(){
+    $('.box_wrap').on('click', '.edit_user_popup_open', function(){
         var id = $(this).data("id");
         
         $("#edit_user_id").val(id);

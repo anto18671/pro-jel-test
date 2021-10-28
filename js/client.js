@@ -70,7 +70,7 @@ $(function() {
 	});
     
     $('#edit_client_popup_wrap').popup();
-	$('.edit_client_popup_open').click(function(){
+    $('.box_wrap').on('click', '.edit_client_popup_open', function(){
         var id = $(this).data("id");
         
         $("#edit_name").val(clients[id].Name);

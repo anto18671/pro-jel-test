@@ -38,7 +38,7 @@ $(function() {
 	});
     
     $('#edit_distributor_popup_wrap').popup();
-	$('.edit_distributor_popup_open').click(function(){
+    $('.box_wrap').on('click', '.edit_distributor_popup_open', function(){
         var id = $(this).data("id");
 
         $("#edit_name").val(distributors[id].Name);

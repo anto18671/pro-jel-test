@@ -39,7 +39,7 @@ $(function() {
 	});
     
     $('#edit_materiel_popup_wrap').popup();
-	$('.edit_materiel_popup_open').click(function(){
+    $('.box_wrap').on('click', '.edit_materiel_popup_open', function(){
         var id = $(this).data("id");
         var hasDistributor = false;
 
