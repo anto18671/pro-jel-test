@@ -24,7 +24,7 @@ $distributors = $manager->getDistributor();
     <div class="box_wrap">
         
         <div class="flex_split">
-            <h1 class="font20" style="width:100px; display: inline;">Distributeur</h1>
+            <h1 class="font20" style="width:100px; display: inline;">Fournisseur</h1>
             <label id="add_distributor_popup_open" class="submit_button right">Ajouter</label>
         </div>
         
@@ -33,7 +33,6 @@ $distributors = $manager->getDistributor();
                 <tr class="front">
                     <th>Nom</th>
                     <th>Téléphone</th>
-                    <th>Adresse</th>
                     <th>Contact</th>
                     <th style="width: 60px">Éditer</th>
                     <th style="width: 60px">Effacer</th>
@@ -44,7 +43,6 @@ $distributors = $manager->getDistributor();
                     <tr class="front">
                         <td><?php echo $distributor->Name ?></td>
                         <td><?php echo $distributor->Telephone1 ?></td>
-                        <td><?php echo $distributor->Address ?></td>
                         <td><?php echo $distributor->Contact ?></td>
                         <td style="width: 60px"><label class="edit_distributor_popup_open table_button" data-id="<?php echo $distributor->Id ?>">Éditer</label></td>
                         <td style="width: 60px"><label class="delete_distributor_popup_open table_button" data-id="<?php echo $distributor->Id ?>">Effacer</label></td>
@@ -57,7 +55,7 @@ $distributors = $manager->getDistributor();
     <div id="add_distributor_popup_wrap" class="popup_wrap">
         <div class="distributor_popup">
             
-            <h1 class="font20">Ajouter un distributeur</h1>
+            <h1 class="font20">Ajouter un fournisseur</h1>
             <div class="padding"></div>
 
             <form method="POST" action="../action/HomeController.php" id="add_distributor_form">
@@ -122,7 +120,7 @@ $distributors = $manager->getDistributor();
     <div id="edit_distributor_popup_wrap" class="popup_wrap">
         <div class="distributor_popup">
             
-            <h1 class="font20">Éditer le distributeur</h1>
+            <h1 class="font20">Éditer le fournisseur</h1>
             <div class="padding"></div>
 
             <form method="POST" action="../action/HomeController.php" id="edit_distributor_form">

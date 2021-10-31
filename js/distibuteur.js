@@ -4,8 +4,8 @@ $(function() {
         "pagingType": "simple_numbers",
         "scrollX": true,
         "columnDefs": [
-		   {"targets": 4, 'searchable':false, 'orderable':false},
-           {"targets": 5, 'searchable':false, 'orderable':false}
+		   {"targets": 3, 'searchable':false, 'orderable':false},
+           {"targets": 4, 'searchable':false, 'orderable':false}
 		 ]
     });
     

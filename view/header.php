@@ -21,7 +21,7 @@
         <?php if (strpos($actual_link, 'facture_add.php') === false && strpos($actual_link, 'facture_edit.php') === false) { ?>
             <div class="admin_nav_wrap">
                 <a href="../view/materiel.php" class="nav_button">Matériel</a>
-                <a href="../view/distibuteur.php" class="nav_button">Distributeur</a>
+                <a href="../view/distibuteur.php" class="nav_button">Fournisseur</a>
                 <a href="../view/client.php" class="nav_button">Client</a>
                 <a href="../view/facture.php" class="nav_button">Facture</a>
                 <?php if ($isAdmin){ ?>

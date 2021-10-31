@@ -34,7 +34,7 @@ class LoginManager
                 
                 
 
-                echo "<script> window.location.replace('../view/materiel.php') </script>";
+                echo "<script> window.location.replace('../view/facture.php') </script>";
             }
             else
             {
