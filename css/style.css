@@ -237,6 +237,14 @@ ul {
     align-items: flex-start;
 }
 
+.client_email_wrapper{
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 10px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
 .client_contact_input{
     width : 164px;
 }

@@ -132,7 +132,7 @@ $clients = $manager->getClient();
                     </div>
 
                 <div class="client_email_wrap">
-                    <div>
+                    <div class="client_email_wrapper">
                         <div class="input_label_wrap">
                             <label class="label_top" for="add_contact">Contact</label>
                             <input class="client_contact_input" id="add_contact" type="text" name="contact"/>
@@ -143,7 +143,7 @@ $clients = $manager->getClient();
                             <input id="add_email1" type="text" name="email1"/>
                         </div>
                     </div>
-                    <div style="padding-left: 16px">
+                    <div style="padding-left: 16px"  class="client_email_wrapper">
                         <div class="input_label_wrap">
                             <label class="label_top" for="add_contactPay">Compte payable</label>
                             <input class="client_contact_input" id="add_contactPay" type="text" name="contactPay"/>
@@ -157,7 +157,7 @@ $clients = $manager->getClient();
                 </div>
                 <br>
                 <div class="client_email_wrap">
-                    <div>
+                    <div class="client_email_wrapper">
                         <div class="input_label_wrap">
                             <label class="label_top" for="add_other1">Autre</label>
                             <input class="client_contact_input" id="add_other1" type="text" name="other1"/>
@@ -168,7 +168,7 @@ $clients = $manager->getClient();
                             <input id="add_email3" type="text" name="email3"/>
                         </div>
                     </div>
-                    <div style="padding-left: 16px">
+                    <div style="padding-left: 16px" class="client_email_wrapper">
                         <div class="input_label_wrap">
                             <label class="label_top" for="add_other2">Autre</label>
                             <input class="client_contact_input" id="add_other2" type="text" name="other2"/>
@@ -270,7 +270,7 @@ $clients = $manager->getClient();
                 </div>
 
                 <div class="client_email_wrap">
-                    <div>
+                    <div class="client_email_wrapper">
                         <div class="input_label_wrap">
                             <label class="label_top" for="edit_contact">Contact</label>
                             <input class="client_contact_input" id="edit_contact" type="text" name="contact"/>
@@ -281,7 +281,7 @@ $clients = $manager->getClient();
                             <input id="edit_email1" type="text" name="email1"/>
                         </div>
                     </div>
-                    <div style="padding-left: 16px">
+                    <div style="padding-left: 16px" class="client_email_wrapper">
                         <div class="input_label_wrap">
                             <label class="label_top" for="edit_contactPay">Compte payable</label>
                             <input class="client_contact_input" id="edit_contactPay" type="text" name="contactPay"/>
@@ -295,7 +295,7 @@ $clients = $manager->getClient();
                 </div>
                 <br>
                 <div class="client_email_wrap">
-                    <div>
+                    <div class="client_email_wrapper">
                         <div class="input_label_wrap">
                             <label class="label_top" for="edit_other1">Autre</label>
                             <input class="client_contact_input" id="edit_other1" type="text" name="other1"/>
@@ -306,7 +306,7 @@ $clients = $manager->getClient();
                             <input id="edit_email3" type="text" name="email3"/>
                         </div>
                     </div>
-                    <div style="padding-left: 16px">
+                    <div style="padding-left: 16px" class="client_email_wrapper">
                         <div class="input_label_wrap">
                             <label class="label_top" for="edit_other2">Autre</label>
                             <input class="client_contact_input" id="edit_other2" type="text" name="other2"/>
