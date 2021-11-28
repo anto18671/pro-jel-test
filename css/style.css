@@ -290,7 +290,7 @@ ul {
 
 .task_wrap_header{
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
 }
 
@@ -300,8 +300,17 @@ ul {
 }
 
 .close_task_popup{
-	margin-left: 10px;
-    font-size: 16px;
+    display: block;
+    width: 100px;
+	background-color: #bebebe;
+	border: 1px solid #b9b9b9;
+	cursor: pointer;
+	text-align: center;
+	color: #000000;
+	font-size: 12px;
+	padding: 6px 0;
+	border-radius: 5px;
+	text-decoration: none;
 }
 
 .task_wrap,

@@ -80,8 +80,10 @@ $(function() {
         var html = '';
 
         html += '<div class="task_wrap" data-type="space" data-pos="' + pos + '">';
+        html += '<div class="task_wrap_header">';
         html += '<p class="task_title">Espace</p>';
-        html += '<label class="close_task_popup">X</label>';
+        html += '<label class="close_task_popup">Supprimer</label>';
+        html += '</div>';
         html += '</div>';
 
         $('.all_task_wrap').append(html);
@@ -93,7 +95,7 @@ $(function() {
         html += '<div class="task_wrap" data-type="text" data-pos="' + pos + '">';
         html += '<div class="task_wrap_header">';
         html += '<p class="task_title">Texte</p>';
-        html += '<label class="close_task_popup">X</label>';
+        html += '<label class="close_task_popup">Supprimer</label>';
         html += '</div>';
         html += '<div class="input_label_wrap">';
         html += '<label>Tache</label><br>';
@@ -110,7 +112,7 @@ $(function() {
         html += '<div class="task_wrap" data-type="time" data-pos="' + pos + '">';
         html += '<div class="task_wrap_header">';
         html += '<p class="task_title">Temps</p>';
-        html += '<label class="close_task_popup">X</label>';
+        html += '<label class="close_task_popup">Supprimer</label>';
         html += '</div>';
         html += '<div class="input_label_wrapper">';
         html += '<label class="label_top" for="temps_valeur">Client</label>';
@@ -150,7 +152,7 @@ $(function() {
         html += '<div class="task_wrap" data-type="materiel" data-pos="' + pos + '">';
         html += '<div class="task_wrap_header">';
         html += '<p class="task_title">Materiel</p>';
-        html += '<label class="close_task_popup">X</label>';
+        html += '<label class="close_task_popup">Supprimer</label>';
         html += '</div>';
         html += '<div class="input_label_wrapper">';
         html += '<label class="random_questions_disposition_label">Nombre de pièces</label><br>';
